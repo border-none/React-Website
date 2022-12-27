@@ -1,20 +1,25 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import useAuth from '../../hooks/UseAuth';
+import { UserContext } from '../UserContext';
 
 export default function SignIn() {
-  const [isAuth, login, logout] = useAuth(false);
+  const [isAuth, login, logout] = useContext(UserContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const [userInfo, setUserInfo] = useState();
 
   const onSubmit = (data) => {
+    window.localStorage.setItem('user', data.user);
+    window.localStorage.setItem('password', data.password);
+    console.log(data, 'data from FORM');
+    const obj = JSON.stringify(data);
     setUserInfo(data);
-    console.log(data);
+    login();
   };
 
   return (
@@ -32,7 +37,7 @@ export default function SignIn() {
           placeholder="password"
           {...register('password', { required: 'Password is required' })}
         />
-        <button onClick={login}>SIGN IN</button>
+        <button>SIGN IN</button>
       </form>
       <div className="errors">
         <p>{errors.user?.message}</p>

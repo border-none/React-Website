@@ -19,11 +19,12 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  padding: 1rem 1rem;
+  padding: 1rem 3rem;
 }
 
 .site-title {
   font-size: 2rem;
+  font-weight: 600;
   letter-spacing: 6px;
 }
 
@@ -71,7 +72,10 @@ ul.home {
 }
 
 input.search {
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
+  width: 40%;
 }
 
 .card {
@@ -136,7 +140,9 @@ button {
   color: var(--main);
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 10px 15px;
+  border: black 1px solid;
+  font-size: 17px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.1s;
@@ -149,4 +155,18 @@ button:hover {
 .errors {
   display: flex;
   gap: 30px;
+}
+
+/* FAV */
+.fav {
+  display: flex;
+  justify-content: center;
+}
+
+/* PROFILE */
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

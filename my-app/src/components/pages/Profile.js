@@ -1,16 +1,18 @@
-import useAuth from '../../hooks/UseAuth';
+import { useContext } from 'react';
+import { UserContext } from '../UserContext';
+import { IoHeartOutline, IoHomeOutline } from 'react-icons/io5';
 
 export default function Profile(props) {
-  const [auth, setAuth] = useAuth(true);
-  function signOut() {
-    setAuth(false);
-    console.log(auth);
-  }
+  const [isAuth, login, logout] = useContext(UserContext);
 
   return (
     <>
-      <h1>PROFILE</h1>
-      <button onClick={signOut}>SIGN OUT</button>
+      <div className="profile">
+        <h1>
+          {IoHomeOutline()} Welcome, {localStorage.getItem('user')}!
+        </h1>
+        <button onClick={logout}>SIGN OUT</button>
+      </div>
     </>
   );
 }

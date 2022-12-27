@@ -5,13 +5,11 @@ export default function useAuth(initialValue) {
 
   function login() {
     setIsAuth(true);
-    console.log('logged in');
-    console.log(isAuth);
   }
 
   function logout() {
+    localStorage.clear();
     setIsAuth(false);
-    console.log('logged out');
   }
 
   return [isAuth, login, logout];

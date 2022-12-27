@@ -1,4 +1,4 @@
-import useAuth from '../hooks/UseAuth';
+import useAuth from '../../hooks/UseAuth';
 
 export default function Profile(props) {
   const [auth, setAuth] = useAuth(true);

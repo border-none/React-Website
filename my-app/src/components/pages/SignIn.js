@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import useAuth from '../hooks/UseAuth';
+import useAuth from '../../hooks/UseAuth';
 
 export default function SignIn() {
   const [isAuth, login, logout] = useAuth(false);

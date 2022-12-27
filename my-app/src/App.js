@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import useAuth from './hooks/UseAuth';
-import Navbar from './Navbar';
-import Favorites from './pages/Favorites';
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
+import Navbar from './components/Navbar';
+import Favorites from './components/pages/Favorites';
+import Home from './components/pages/Home';
+import Profile from './components/pages/Profile';
+import SignIn from './components/pages/SignIn';
+import SignUp from './components/pages/SignUp';
 
 function App() {
   const [isAuth, login, logout] = useAuth(false);

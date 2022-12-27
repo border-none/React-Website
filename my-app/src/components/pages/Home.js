@@ -25,6 +25,7 @@ export default function Home(props) {
     return (
       <>
         <div className="container">
+          <input className="search" placeholder="search" type="text" />
           <ul className="home">{pokemon}</ul>
         </div>
       </>

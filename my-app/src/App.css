@@ -70,6 +70,10 @@ ul.home {
   gap: 20px;
 }
 
+input.search {
+  margin: 0 auto;
+}
+
 .card {
   border: 1px #0000002c solid;
   padding: 10px 20px;

@@ -20,6 +20,8 @@ export default function LogIn() {
       localStorage.getItem('password') === data.password
     ) {
       login();
+    } else if (localStorage.length === 0) {
+      setUserInfo('Create an account first!');
     } else {
       setUserInfo('Wrong username or password! 💥');
       console.error('Wrong username or password! 💥');
@@ -37,7 +39,7 @@ export default function LogIn() {
           {...register('password')}
         />
         <button>SIGN IN</button>
-        <pre>{userInfo}</pre>
+        <p>{userInfo}</p>
         {/* <p>{errors.user?.message}</p> */}
       </form>
     </>

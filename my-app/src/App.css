@@ -12,6 +12,11 @@ body {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: var(--main);
+}
+
 .nav {
   background: var(--main);
   color: var(--secondary);
@@ -73,11 +78,66 @@ ul.home {
   gap: 20px;
 }
 
-input.search {
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search input {
+  display: flex;
+  border: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+  text-align: start;
+  /* text-transform: uppercase; */
+}
+
+.search--input {
   display: flex;
   justify-content: center;
-  margin: 0 auto;
-  width: 40%;
+}
+
+.search--icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+  font-size: 30px;
+  color: var(--secondary);
+  background: var(--main);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+
+.data-result {
+  width: 300px;
+  background: var(--main);
+  padding: 0 20px;
+  min-height: 30px;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  overflow: hidden;
+  overflow-y: scroll;
+  top: 135px;
+  position: absolute;
+}
+
+.data-result a {
+  color: var(--secondary);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.data-result p:hover {
+  color: var(--accent);
+}
+
+.data-result::-webkit-scrollbar {
+  display: none;
 }
 
 .card {
@@ -132,9 +192,13 @@ input {
   outline: none;
 
   font-size: 20px;
-  width: 70%;
+
   padding: 10px 10px;
   text-align: center;
+}
+
+.signin input {
+  width: 70%;
 }
 
 button {
@@ -164,12 +228,14 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: 20px;
-  margin: 200px;
+  margin: 100px auto;
 }
 
 .signin input {
   box-shadow: 0 5px 10px 2px #00000072;
+  width: 200px;
 }
 
 /* FAV */

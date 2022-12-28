@@ -9,6 +9,7 @@ import SignUp from './components/pages/SignUp';
 import LogIn from './components/pages/LogIn';
 import { UserContext } from './components/UserContext';
 import { IoHeartOutline, IoHomeOutline } from 'react-icons/io5';
+import Pokemon from './components/pages/Pokemon';
 
 function App() {
   const [isAuth, login, logout] = useAuth(false);
@@ -36,6 +37,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={isAuth ? <Profile /> : <LogIn />} />
           <Route path="/signin" element={isAuth ? <Favorites /> : <SignUp />} />
+          <Route path="/pokemon" element={<Pokemon />} />
         </Routes>
       </UserContext.Provider>
     </>

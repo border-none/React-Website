@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Search from '../Search';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
@@ -18,14 +19,14 @@ export default function Home(props) {
 
     const pokemon = data.map((pokemon, i) => (
       <li className="card" key={i}>
-        {pokemon.name}
+        <a href="pokemon"> {pokemon.name}</a>
       </li>
     ));
 
     return (
       <>
         <div className="container">
-          <input className="search" placeholder="search" type="text" />
+          <Search placeholder="search pokemon..." data={data} />
           <ul className="home">{pokemon}</ul>
         </div>
       </>

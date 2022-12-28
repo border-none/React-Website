@@ -8,7 +8,6 @@ export default function useAuth(initialValue) {
   }
 
   function logout() {
-    localStorage.clear();
     setIsAuth(false);
   }
 

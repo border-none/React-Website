@@ -12,6 +12,19 @@ export default function Profile(props) {
           {IoHomeOutline()} Welcome, {localStorage.getItem('user')}!
         </h1>
         <button onClick={logout}>SIGN OUT</button>
+        <div className="delete--container">
+          <h3>DELETE ACCOUNT</h3>
+          <p>(CLEARS LOCAL STORAGE)</p>
+          <button
+            className="delete--btn"
+            onClick={() => {
+              localStorage.clear();
+              logout();
+            }}
+          >
+            DELETE ACCOUNT
+          </button>
+        </div>
       </div>
     </>
   );

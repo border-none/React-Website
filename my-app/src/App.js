@@ -10,9 +10,11 @@ import LogIn from './components/pages/LogIn';
 import { UserContext } from './components/UserContext';
 import { IoHeartOutline, IoHomeOutline } from 'react-icons/io5';
 import Pokemon from './components/pages/Pokemon';
+import { useState } from 'react';
 
 function App() {
   const [isAuth, login, logout] = useAuth(false);
+  const [pokemon, setPokemon] = useState(null);
 
   if (
     window.localStorage.getItem('loggedIn') === 'true' &&
@@ -33,7 +35,9 @@ function App() {
 
   return (
     <>
-      <UserContext.Provider value={[isAuth, login, logout]}>
+      <UserContext.Provider
+        value={[isAuth, login, logout, pokemon, setPokemon]}
+      >
         <Navbar
           main={isAuth ? heart : 'SIGN UP'}
           secondary={isAuth && localStorage.getItem('user') ? house : 'SIGN IN'}

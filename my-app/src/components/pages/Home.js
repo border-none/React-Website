@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link, Routes, Route } from 'react-router-dom';
 import Search from '../Search';
-import Pokemon from './Pokemon';
+import { useContext } from 'react';
+import { UserContext } from '../UserContext';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
+  const [pokemon, setPokemon] = useContext(UserContext);
 
   useEffect(
     () =>
@@ -16,12 +17,22 @@ export default function Home(props) {
     []
   );
 
+  console.log(pokemon);
+
+  function onClick(e) {
+    localStorage.setItem('clickedPokemon', e.target.firstChild.data);
+    setPokemon(e.target.firstChild.data);
+    console.log(pokemon);
+  }
+
   if (data) {
     // console.log(data[0].url);
 
     const pokemon = data.map((pokemon, i) => (
       <li className="card" key={i}>
-        <a href="pokemon">{pokemon.name}</a>
+        <a href="pokemon" onClick={onClick}>
+          {pokemon.name}
+        </a>
       </li>
     ));
 
@@ -29,9 +40,6 @@ export default function Home(props) {
       <>
         <div className="container">
           <Search placeholder="search pokemon..." data={data} />
-          {/* <Routes>
-            <Route path="/pokemon" element={<Pokemon />} />
-          </Routes> */}
           <ul className="home">{pokemon}</ul>
         </div>
       </>
@@ -39,7 +47,7 @@ export default function Home(props) {
   } else {
     return (
       <>
-        <h1>Loading...</h1>
+        <h1 className="loading">Loading...</h1>
       </>
     );
   }

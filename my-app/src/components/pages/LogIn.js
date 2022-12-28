@@ -29,7 +29,7 @@ export default function LogIn() {
   return (
     <>
       <form className="signin" onSubmit={handleSubmit(onSubmit)}>
-        <h2>SIGN IN TO YOUR ACCOUNT</h2>
+        <h1>SIGN IN</h1>
         <input type="text" placeholder="username" {...register('user')} />
         <input
           type="password"

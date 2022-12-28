@@ -13,11 +13,16 @@ import Pokemon from './components/pages/Pokemon';
 
 function App() {
   const [isAuth, login, logout] = useAuth(false);
-  // const [user, setUser] = useState(null);
 
-  // const value = useMemo(() => [user, setUser], [user, setUser]);
+  if (
+    window.localStorage.getItem('loggedIn') === 'true' &&
+    window.localStorage.getItem('loggedInTimes') === '0'
+  ) {
+    console.log('LOGIN from app');
+    // console.log(isAuth, 'isAuth is set to true');
+  }
 
-  // const username = (localStorage.getItem('username') ? localStorage.getItem('username'): )
+  // console.log(window.localStorage.getItem('loggedInTimes') === '1');
 
   const heart = <div>{IoHeartOutline()} FAVORITES</div>;
   const house = (

@@ -18,8 +18,8 @@ export default function Profile(props) {
           <button
             className="delete--btn"
             onClick={() => {
-              localStorage.clear();
               logout();
+              localStorage.clear();
             }}
           >
             DELETE ACCOUNT

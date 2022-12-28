@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { Link, Routes, Route } from 'react-router-dom';
 import Search from '../Search';
+import Pokemon from './Pokemon';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
@@ -19,7 +21,7 @@ export default function Home(props) {
 
     const pokemon = data.map((pokemon, i) => (
       <li className="card" key={i}>
-        <a href="pokemon"> {pokemon.name}</a>
+        <a href="pokemon">{pokemon.name}</a>
       </li>
     ));
 
@@ -27,6 +29,9 @@ export default function Home(props) {
       <>
         <div className="container">
           <Search placeholder="search pokemon..." data={data} />
+          {/* <Routes>
+            <Route path="/pokemon" element={<Pokemon />} />
+          </Routes> */}
           <ul className="home">{pokemon}</ul>
         </div>
       </>

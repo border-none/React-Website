@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { IoCloseOutline, IoSearchOutline } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 function Search({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);
@@ -49,7 +50,7 @@ function Search({ placeholder, data }) {
         <div className="data-result">
           {filteredData.slice(0, 8).map((pokemon, key) => {
             return (
-              <a className="data-item" href="pokemon" key={key}>
+              <a className="data-item" href="/pokemon" key={key}>
                 <p> {pokemon.name}</p>
               </a>
             );

@@ -30,12 +30,12 @@ export default function SignUp() {
           <h1>CREATE ACCOUNT</h1>
           <input
             type="text"
-            placeholder="username"
+            placeholder="*username"
             {...register('user', { required: 'Username is required' })}
           />
           <input
             type="password"
-            placeholder="password"
+            placeholder="*password"
             {...register('password', { required: 'Password is required' })}
           />
           <input
@@ -52,7 +52,11 @@ export default function SignUp() {
       </div>
     );
   } else {
-    <h1>ACCOUNT CREATED! TRY LOGGIN IN! {created}</h1>;
+    return (
+      <div className="signup">
+        <h1>🔥 ACCOUNT CREATED! TRY LOGGIN IN! 🔥</h1>
+      </div>
+    );
   }
 }
 

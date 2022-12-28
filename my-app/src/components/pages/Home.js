@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import Search from '../Search';
 import { useContext } from 'react';
 import { UserContext } from '../UserContext';
+import { Link } from 'react-router-dom';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
-  const [pokemon, setPokemon] = useContext(UserContext);
 
   useEffect(
     () =>
@@ -17,12 +17,8 @@ export default function Home(props) {
     []
   );
 
-  console.log(pokemon);
-
   function onClick(e) {
     localStorage.setItem('clickedPokemon', e.target.firstChild.data);
-    setPokemon(e.target.firstChild.data);
-    console.log(pokemon);
   }
 
   if (data) {
@@ -30,9 +26,9 @@ export default function Home(props) {
 
     const pokemon = data.map((pokemon, i) => (
       <li className="card" key={i}>
-        <a href="pokemon" onClick={onClick}>
+        <Link to="pokemon" onClick={onClick}>
           {pokemon.name}
-        </a>
+        </Link>
       </li>
     ));
 

@@ -56,14 +56,14 @@ function Search({ placeholder, data }) {
         <div className="data-result">
           {filteredData.slice(0, 8).map((pokemon, key) => {
             return (
-              <a
+              <Link
                 onClick={onClick}
                 className="data-item"
-                href="/pokemon"
+                to="/pokemon"
                 key={key}
               >
                 <p>{pokemon.name}</p>
-              </a>
+              </Link>
             );
           })}
         </div>

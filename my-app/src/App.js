@@ -8,9 +8,16 @@ import Profile from './components/pages/Profile';
 import SignUp from './components/pages/SignUp';
 import LogIn from './components/pages/LogIn';
 import { UserContext } from './components/UserContext';
-import { IoHeartOutline, IoHomeOutline } from 'react-icons/io5';
+import {
+  IoHeartOutline,
+  IoHomeOutline,
+  IoPersonOutline,
+  IoLogInOutline,
+} from 'react-icons/io5';
 import Pokemon from './components/pages/Pokemon';
 import { useState } from 'react';
+
+/// do map list ul li
 
 function App() {
   const [isAuth, login, logout] = useAuth(false);
@@ -26,22 +33,26 @@ function App() {
 
   // console.log(window.localStorage.getItem('loggedInTimes') === '1');
 
-  const heart = <div>{IoHeartOutline()} FAVORITES</div>;
-  const house = (
+  const heartIcon = (
     <div>
-      {IoHomeOutline()} {localStorage.getItem('user')?.toUpperCase()}
+      <IoHeartOutline /> FAVORITES
+    </div>
+  );
+  const personIcon = (
+    <div>
+      <IoPersonOutline /> {localStorage.getItem('user')?.toUpperCase()}
     </div>
   );
 
   return (
     <>
-      <UserContext.Provider
-        value={[isAuth, login, logout, pokemon, setPokemon]}
-      >
-        <Navbar
-          main={isAuth ? heart : 'SIGN UP'}
-          secondary={isAuth && localStorage.getItem('user') ? house : 'SIGN IN'}
-        />
+      <Navbar
+        main={isAuth ? heartIcon : 'SIGN UP'}
+        secondary={
+          isAuth && localStorage.getItem('user') ? personIcon : 'SIGN IN'
+        }
+      />
+      <UserContext.Provider value={[isAuth, login, logout]}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={isAuth ? <Profile /> : <LogIn />} />

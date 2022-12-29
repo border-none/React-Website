@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Press+Start+2P&display=swap');
+
 :root {
   --main: black;
   --secondary: white;
@@ -17,6 +19,15 @@ a {
   color: var(--main);
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
 .loading {
   display: flex;
   align-items: center;
@@ -33,19 +44,30 @@ a {
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  padding: 1rem 3rem;
+  padding: 1.2rem 2rem;
+  border-bottom: 5px #222 solid;
+  box-shadow: 0 0 10px black;
 }
 
 .site-title {
-  font-size: 2rem;
-  font-weight: 600;
-  letter-spacing: 6px;
+  font-family: 'Press Start 2P';
+  font-size: 1.8rem;
+  letter-spacing: 10px;
 }
 
-.site-title:active {
-  font-size: 2rem;
-  letter-spacing: 6px;
+#title {
+  transition: all 0.05s;
+  color: var(--accent);
+  text-shadow: 0px 2px 0px #00637f, 0px 3px 0px #00637f, 0px 4px 0px #00637f,
+    0px 5px 0px #00637f, 0px 5px 0px #00637f, 0px 6px 0px #00637f,
+    0px 7px 0px #00637f, 0px 8px 0px #00637f;
+}
+
+#title:active {
   translate: 0px 1.5px;
+  text-shadow: 0px 2px 0px #00637f, 0px 3px 0px #00637f, 0px 4px 0px #00637f,
+    0px 5px 0px #00637f, 0px 5px 0px #00637f, 0px 6px 0px #00637f,
+    0px 7px 0px #00637f, 0px 8px 0px #00637f;
 }
 
 .nav ul {
@@ -308,7 +330,7 @@ button:hover {
 
 .types {
   display: flex;
-  gap: 30px;
+  gap: 10px;
 }
 
 .types p {
@@ -318,13 +340,9 @@ button:hover {
   padding: 10px 20px;
 }
 
-.stat {
+.stat ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-}
-
-.stat p {
-  margin: 0;
+  gap: 5px;
 }

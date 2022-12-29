@@ -21,7 +21,7 @@ import { useState } from 'react';
 
 function App() {
   const [isAuth, login, logout] = useAuth(false);
-  const [pokemon, setPokemon] = useState(null);
+  const [count, setCount] = useState(0);
 
   if (
     window.localStorage.getItem('loggedIn') === 'true' &&
@@ -52,7 +52,7 @@ function App() {
           isAuth && localStorage.getItem('user') ? personIcon : 'SIGN IN'
         }
       />
-      <UserContext.Provider value={[isAuth, login, logout]}>
+      <UserContext.Provider value={[isAuth, login, logout, count, setCount]}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={isAuth ? <Profile /> : <LogIn />} />

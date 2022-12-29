@@ -29,15 +29,13 @@ function Pokemon({ id }) {
   console.log(data, 'from Pokemon');
 
   if (data.name !== '') {
-    // const statsList = data.stats.map((el, i) => <p>{el.stats[i].stat.name}</p>);
-    // console.log(statsList);
-    // const arr = data.stats;
-    // const mapped = arr.map((obj, i) => {
-    //   return obj[1];
-    // });
-    // console.log(arr);
-    // console.log(mapped);
-    // console.log(data.stats);
+    const pokemonList = data.stats.map((pokemon, i) => {
+      return (
+        <li>
+          {pokemon.stat.name.toUpperCase()}: {data.stats[i].base_stat}
+        </li>
+      );
+    });
     return (
       <div className="pokemon__container">
         <img
@@ -47,7 +45,8 @@ function Pokemon({ id }) {
         />
         <h1>{data.name.toUpperCase()}</h1>
         <div className="stat">
-          <p>
+          <ul>{pokemonList}</ul>
+          {/* <p>
             <IoAdd /> {data.stats[0].stat.name.toUpperCase()}:{' '}
             {data.stats[0].base_stat}
           </p>
@@ -62,7 +61,7 @@ function Pokemon({ id }) {
           <p>
             <IoStarOutline /> {data.stats[3].stat.name.toUpperCase()}:{' '}
             {data.stats[3].base_stat}
-          </p>
+          </p> */}
         </div>
         <div className="types">
           <p>#{[data.types[0]?.type.name]}</p>

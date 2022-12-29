@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../UserContext';
 import { IoPersonOutline } from 'react-icons/io5';
 
 export default function Profile(props) {
   const [isAuth, login, logout] = useContext(UserContext);
+  const [data, setData] = useState(null);
 
   return (
     <>

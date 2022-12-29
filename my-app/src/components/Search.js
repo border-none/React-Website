@@ -7,7 +7,7 @@ function Search({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);
   const [input, setInput] = useState('');
   const inputRef = useRef();
-  const [pokemon, setPokemon] = useContext(UserContext);
+  const [isAuth, login, logout, count, setCount] = useContext(UserContext);
 
   const handleFilter = (e) => {
     const searchWord = e.target.value.toLowerCase();
@@ -29,9 +29,9 @@ function Search({ placeholder, data }) {
   };
 
   function onClick(e) {
-    console.log(e.target.childNodes[0].wholeText);
+    setCount(count + 1);
     localStorage.setItem('clickedPokemon', e.target.childNodes[0].wholeText);
-    setPokemon(e.target.childNodes[0].wholeText);
+    localStorage.setItem(count, e.target.childNodes[0].wholeText);
   }
 
   return (
@@ -48,7 +48,7 @@ function Search({ placeholder, data }) {
           {input.length > 0 ? (
             <IoCloseOutline onClick={clearInput} />
           ) : (
-            <IoSearchOutline />
+            <IoSearchOutline onClick={clearInput} />
           )}
         </div>
       </div>

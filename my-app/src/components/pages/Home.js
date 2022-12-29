@@ -3,6 +3,7 @@ import Search from '../Search';
 import { useContext } from 'react';
 import { UserContext } from '../UserContext';
 import { Link } from 'react-router-dom';
+import Filter from '../Filter';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
@@ -36,6 +37,7 @@ export default function Home(props) {
       <>
         <div className="container">
           <Search placeholder="search pokemon..." data={data} />
+          <Filter />
           <ul className="home">{pokemon}</ul>
         </div>
       </>

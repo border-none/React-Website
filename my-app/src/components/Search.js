@@ -11,11 +11,12 @@ function Search({ placeholder, data }) {
 
   const handleFilter = (e) => {
     const searchWord = e.target.value.toLowerCase();
-    setInput(searchWord);
+    const searchWordStrict = searchWord.replace(/[^A-Za-z]/gi, '');
+    setInput(searchWordStrict.toUpperCase());
     const newFilter = data.filter((value) => {
-      return value.name.includes(searchWord);
+      return value.name.includes(searchWordStrict);
     });
-    if (searchWord === '') {
+    if (searchWordStrict === '') {
       setFilteredData([]);
     } else {
       setFilteredData(newFilter);

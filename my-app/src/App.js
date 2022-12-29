@@ -17,8 +17,6 @@ import {
 import Pokemon from './components/pages/Pokemon';
 import { useState } from 'react';
 
-/// do map list ul li
-
 function App() {
   const [isAuth, login, logout] = useAuth(false);
   const [count, setCount] = useState(0);

@@ -21,7 +21,7 @@ export default function LogIn() {
     ) {
       login();
     } else if (localStorage.length === 0) {
-      setUserInfo('Create an account first!');
+      setUserInfo('Create an account first! 💥');
     } else {
       setUserInfo('Wrong username or password! 💥');
       console.error('Wrong username or password! 💥');
@@ -30,17 +30,24 @@ export default function LogIn() {
 
   return (
     <>
+      <div className="errors">
+        {userInfo && <p>{userInfo}</p>}
+        {errors.user?.message && <p>{errors.user?.message}</p>}
+        {errors.password?.message && <p>{errors.password?.message}</p>}
+      </div>
       <form className="signin" onSubmit={handleSubmit(onSubmit)}>
         <h1>SIGN IN</h1>
-        <input type="text" placeholder="username" {...register('user')} />
+        <input
+          type="text"
+          placeholder="username"
+          {...register('user', { required: '💥 Username is required' })}
+        />
         <input
           type="password"
           placeholder="password"
-          {...register('password')}
+          {...register('password', { required: '💥 Password is required' })}
         />
         <button>SIGN IN</button>
-        <p>{userInfo}</p>
-        {/* <p>{errors.user?.message}</p> */}
       </form>
     </>
   );

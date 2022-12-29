@@ -31,7 +31,7 @@ function Pokemon({ id }) {
   if (data.name !== '') {
     const pokemonList = data.stats.map((pokemon, i) => {
       return (
-        <li>
+        <li key={i}>
           {pokemon.stat.name.toUpperCase()}: {data.stats[i].base_stat}
         </li>
       );

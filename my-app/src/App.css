@@ -250,8 +250,19 @@ button:hover {
 }
 
 .errors {
+  margin: 0 auto;
   display: flex;
+  justify-content: center;
   gap: 30px;
+}
+
+.errors p {
+  font-size: 20px;
+  text-align: center;
+  background: var(--main);
+  border-radius: 100px;
+  padding: 10px 30px;
+  color: var(--secondary);
 }
 
 /* SIGN IN */
@@ -263,12 +274,13 @@ button:hover {
   border-radius: 10px;
   box-shadow: 0 0 10px #00000054;
   padding: 20px;
+  margin: 100px auto;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 20px;
-  margin: 100px auto;
 }
 
 .signin input {
@@ -307,6 +319,47 @@ button:hover {
 
 .delete--btn:hover {
   background: #f84545;
+}
+
+.modal {
+  background: #00000087;
+  position: absolute;
+  z-index: 999;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal--container {
+  color: var(--secondary);
+  background: var(--main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+}
+
+.yesno {
+  display: flex;
+  gap: 40px;
+}
+
+.yes {
+  background: transparent;
+  border: 1px #ffffffa4 solid;
+  color: #ffffffa4;
+}
+
+.yes:hover {
+  background: #f84545;
+  color: white;
 }
 
 /* POKEMON */

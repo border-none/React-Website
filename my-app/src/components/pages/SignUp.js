@@ -25,18 +25,21 @@ export default function SignUp() {
   if (!created) {
     return (
       <div className="signup">
-        <pre>{JSON.stringify(userInfo, undefined, 2)}</pre>
+        <div className="errors">
+          {errors.user?.message && <p>{errors.user?.message}</p>}
+          {errors.password?.message && <p>{errors.password.message}</p>}
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className="signup--card">
           <h1>CREATE ACCOUNT</h1>
           <input
             type="text"
             placeholder="*username"
-            {...register('user', { required: 'Username is required' })}
+            {...register('user', { required: 'Username is required! 💥' })}
           />
           <input
             type="password"
             placeholder="*password"
-            {...register('password', { required: 'Password is required' })}
+            {...register('password', { required: 'Password is required! 💥' })}
           />
           <input
             type="text"
@@ -45,10 +48,6 @@ export default function SignUp() {
           />
           <button>SIGN UP</button>
         </form>
-        <div className="errors">
-          <p>{errors.user?.message}</p>
-          <p>{errors.password?.message}</p>
-        </div>
       </div>
     );
   } else {

@@ -2,9 +2,11 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import Search from '../Search';
 import { Link } from 'react-router-dom';
 import Filter from '../Filter';
+import { IoHeartOutline } from 'react-icons/io5';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
+  const [arr, setArr] = useState([]);
 
   useEffect(
     () =>
@@ -16,6 +18,16 @@ export default function Home(props) {
     []
   );
 
+  // useEffect(() => {
+  //   for (let i = 0; i < 100; i++) {
+  //     fetch(`https://pokeapi.co/api/v2/pokemon/${data.name}`)
+  //       .then((response) => response.json())
+  //       .then((json) => setArr(arr + json.url));
+  //   }
+  // }, []);
+
+  // console.log(arr);
+
   function onClick(e) {
     localStorage.setItem('clickedPokemon', e.target.firstChild.data);
   }
@@ -26,6 +38,7 @@ export default function Home(props) {
         <Link to="pokemon" onClick={onClick}>
           {pokemon.name}
         </Link>
+        {<IoHeartOutline />}
       </li>
     ));
 

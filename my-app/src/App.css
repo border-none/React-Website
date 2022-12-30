@@ -111,7 +111,7 @@ ul.home {
 
 .home {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 140px);
+  grid-template-columns: repeat(auto-fit, 200px);
   gap: 20px;
 }
 
@@ -182,6 +182,10 @@ ul.home {
 }
 
 .card {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
   border: 1px #0000002c solid;
   padding: 10px 20px;
 

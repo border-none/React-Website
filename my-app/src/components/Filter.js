@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { IoHeartOutline } from 'react-icons/io5';
 
 function Filter() {
   const [data, setData] = useState(null);
@@ -67,6 +68,7 @@ function Filter() {
           <Link to="pokemon" onClick={onClick}>
             {el.pokemon.name.toUpperCase()}
           </Link>
+          {<IoHeartOutline />}
         </li>
       );
     });

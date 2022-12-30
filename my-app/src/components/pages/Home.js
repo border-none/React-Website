@@ -1,13 +1,10 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Search from '../Search';
-import { useContext } from 'react';
-import { UserContext } from '../UserContext';
 import { Link } from 'react-router-dom';
 import Filter from '../Filter';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
-  const [img, setImg] = useState(null);
 
   useEffect(
     () =>
@@ -27,7 +24,6 @@ export default function Home(props) {
     const pokemon = data.map((pokemon, i) => (
       <li className="card" key={i}>
         <Link to="pokemon" onClick={onClick}>
-          {/* <img src={img.sprites.front_default} alt="" /> */}
           {pokemon.name}
         </Link>
       </li>

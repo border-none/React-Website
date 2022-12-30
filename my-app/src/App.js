@@ -8,28 +8,35 @@ import Profile from './components/pages/Profile';
 import SignUp from './components/pages/SignUp';
 import LogIn from './components/pages/LogIn';
 import { UserContext } from './components/UserContext';
-import {
-  IoHeartOutline,
-  IoHomeOutline,
-  IoPersonOutline,
-  IoLogInOutline,
-} from 'react-icons/io5';
+import { IoHeartOutline, IoPersonOutline } from 'react-icons/io5';
 import Pokemon from './components/pages/Pokemon';
 import { useState } from 'react';
+import Blue from './components/themes/Blue';
+import Orange from './components/themes/Orange';
+import Maroon from './components/themes/Maroon';
 
 function App() {
-  const [isAuth, login, logout] = useAuth(false);
-  const [count, setCount] = useState(0);
-
-  if (
-    window.localStorage.getItem('loggedIn') === 'true' &&
-    window.localStorage.getItem('loggedInTimes') === '0'
-  ) {
-    console.log('LOGIN from app');
-    // console.log(isAuth, 'isAuth is set to true');
+  if (window.localStorage.getItem('theme') === 'orange') {
+    Orange();
+  } else if (window.localStorage.getItem('theme') === 'maroon') {
+    Maroon();
+  } else if (window.localStorage.getItem('theme') === 'blue') {
+    Blue();
   }
 
-  // console.log(window.localStorage.getItem('loggedInTimes') === '1');
+  const [isAuth, login, logout] = useAuth(false);
+  const [count, setCount] = useState(0);
+  const [count2, setCount2] = useState(0);
+
+  if (window.localStorage.getItem('loggedIn') && count === 0) {
+    setCount(count + 1);
+    login();
+  }
+
+  if (window.localStorage.getItem('theme') && count2 === 0) {
+    setCount2(count2 + 1);
+    console.log('theme remains');
+  }
 
   const heartIcon = (
     <div>

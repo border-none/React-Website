@@ -1,19 +1,17 @@
-import { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../UserContext';
-import {
-  IoShieldOutline,
-  IoStarOutline,
-  IoAdd,
-  IoFlashOutline,
-} from 'react-icons/io5';
-import { MdSlideshow } from 'react-icons/md';
+import { useEffect, useState } from 'react';
+import { IoShieldOutline, IoAdd, IoFlashOutline } from 'react-icons/io5';
+import { GiBroadsword, GiHealingShield, GiPointySword } from 'react-icons/gi';
+import PokemonImage2D from '../PokemonImage2D';
+import PokemonImage3D from '../PokemonImage3D';
 
 function Pokemon() {
   const icons = [
     <IoAdd />,
-    <IoFlashOutline />,
+    <GiBroadsword />,
     <IoShieldOutline />,
-    <IoStarOutline />,
+    <GiPointySword />,
+    <GiHealingShield />,
+    <IoFlashOutline />,
   ];
 
   const clickedPokemon = localStorage.getItem('clickedPokemon');
@@ -25,18 +23,8 @@ function Pokemon() {
   const imgNodeList = document.querySelectorAll('.pokemon-image');
   const imgArr = Array.from(imgNodeList);
 
-  const prevSlide = () => {
-    imgArr.map((el, i) => {
-      if (el.classList[1] === 'off') {
-        setThreeD(true);
-        el.classList.remove('off');
-        el.classList.add('on');
-      } else {
-        setThreeD(false);
-        el.classList.remove('on');
-        el.classList.add('off');
-      }
-    });
+  const threeDToggle = () => {
+    threeD ? setThreeD(false) : setThreeD(true);
   };
 
   useEffect(() => {
@@ -49,8 +37,6 @@ function Pokemon() {
     fetch(`data.stats[0].stat.url`).then((json) => setStat(json));
   }, []);
 
-  // console.log(data, 'from Pokemon');
-
   if (data.name !== '') {
     const pokemonList = data.stats.map((pokemon, i) => {
       return (
@@ -59,30 +45,31 @@ function Pokemon() {
         </li>
       );
     });
+    const pokemonListWithIcons = pokemonList.map((el, i) => {
+      return (
+        <div className="stat-icons--container" key={i}>
+          {icons[i]} {el}
+        </div>
+      );
+    });
     return (
       <div className="pokemon__container">
-        <div className="img-container">
-          <img
-            src={data.sprites.other['official-artwork'].front_default}
-            className="pokemon-image"
-            alt="img"
-          />
-          <img
-            src={data.sprites.other.home.front_shiny}
-            className="pokemon-image off"
-            alt="img"
-          />
+        <div className="img-container on">
+          {threeD ? (
+            <PokemonImage2D data={data} />
+          ) : (
+            <PokemonImage3D data={data} />
+          )}
         </div>
         <h1>{data.name.toUpperCase()}</h1>
-
         <div className="stat">
-          <ul>{pokemonList}</ul>
+          <ul>{pokemonListWithIcons}</ul>
         </div>
         <div className="types">
-          <p>#{[data.types[0]?.type.name]}</p>
-          {data.types[1]?.type.name && <p>#{[data.types[1]?.type.name]}</p>}
-          <h2 className="threeD" onClick={prevSlide}>
-            {threeD ? '3D ON' : '3D OFF'}
+          <p>{[data.types[0]?.type.name]}</p>
+          {data.types[1]?.type.name && <p>{[data.types[1]?.type.name]}</p>}
+          <h2 className="threeD" onClick={threeDToggle}>
+            {threeD ? '3D OFF' : '3D ON'}
           </h2>
         </div>
       </div>

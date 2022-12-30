@@ -1,21 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Filter() {
   const [data, setData] = useState(null);
-  const [type, setType] = useState('ALL');
-  const [active, setActive] = useState({
-    active: null,
-    buttons: [
-      { id: 0 },
-      { id: 1 },
-      { id: 2 },
-      { id: 3 },
-      { id: 4 },
-      { id: 5 },
-      { id: 6 },
-    ],
-  });
+  const [type, setType] = useState();
 
   const buttonNodeList = document.querySelectorAll('.btn-container button');
   const buttonArr = Array.from(buttonNodeList);
@@ -56,10 +44,11 @@ function Filter() {
   }
 
   useEffect(() => {
-    console.log('use effect filter');
-    fetch(`https://pokeapi.co/api/v2/type/${type}`)
-      .then((response) => response.json())
-      .then((json) => setData(json));
+    if (type) {
+      fetch(`https://pokeapi.co/api/v2/type/${type}`)
+        .then((response) => response.json())
+        .then((json) => setData(json));
+    }
   }, [type]);
 
   let pokemonType;
@@ -85,7 +74,9 @@ function Filter() {
   return (
     <div className="container type">
       <div className="btn-container">
-        <button onClick={all}>ALL</button>
+        <button id="all" onClick={all}>
+          ALL
+        </button>
         <button onClick={water}>WATER</button>
         <button onClick={fire}>FIRE</button>
         <button onClick={grass}>GRASS</button>

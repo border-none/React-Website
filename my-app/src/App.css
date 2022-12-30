@@ -4,6 +4,7 @@
   --main: black;
   --secondary: white;
   --accent: #00ccff;
+  --accent-shadow: #00637f;
 }
 
 * {
@@ -58,16 +59,20 @@ ul li {
 #title {
   transition: all 0.05s;
   color: var(--accent);
-  text-shadow: 0px 2px 0px #00637f, 0px 3px 0px #00637f, 0px 4px 0px #00637f,
-    0px 5px 0px #00637f, 0px 5px 0px #00637f, 0px 6px 0px #00637f,
-    0px 7px 0px #00637f, 0px 8px 0px #00637f;
+  text-shadow: 0px 2px 0px var(--accent-shadow),
+    0px 3px 0px var(--accent-shadow), 0px 4px 0px var(--accent-shadow),
+    0px 5px 0px var(--accent-shadow), 0px 5px 0px var(--accent-shadow),
+    0px 6px 0px var(--accent-shadow), 0px 7px 0px var(--accent-shadow),
+    0px 8px 0px var(--accent-shadow);
 }
 
 #title:active {
   translate: 0px 1.5px;
-  text-shadow: 0px 2px 0px #00637f, 0px 3px 0px #00637f, 0px 4px 0px #00637f,
-    0px 5px 0px #00637f, 0px 5px 0px #00637f, 0px 6px 0px #00637f,
-    0px 7px 0px #00637f, 0px 8px 0px #00637f;
+  text-shadow: 0px 2px 0px var(--accent-shadow),
+    0px 3px 0px var(--accent-shadow), 0px 4px 0px var(--accent-shadow),
+    0px 5px 0px var(--accent-shadow), 0px 5px 0px var(--accent-shadow),
+    0px 6px 0px var(--accent-shadow), 0px 7px 0px var(--accent-shadow),
+    0px 8px 0px var(--accent-shadow);
 }
 
 .nav ul {
@@ -95,6 +100,7 @@ ul li {
 /* HOME */
 .container {
   margin: 20px;
+  animation: pageLoad 0.5s forwards;
 }
 
 ul.home {
@@ -120,7 +126,6 @@ ul.home {
   border: none;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
-
   text-align: start;
 }
 
@@ -147,7 +152,6 @@ ul.home {
   background: var(--main);
   padding: 0 20px;
   min-height: 30px;
-  max-height: 300px;
   border-radius: 5px;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
@@ -155,12 +159,18 @@ ul.home {
   overflow-y: scroll;
   top: 135px;
   position: absolute;
+  z-index: 999;
 }
 
 .data-result a {
   color: var(--secondary);
   text-decoration: none;
   text-transform: uppercase;
+  background: red;
+}
+
+.data-result p {
+  transition: all 0.1s;
 }
 
 .data-result p:hover {
@@ -204,14 +214,18 @@ ul.home {
 }
 
 .type button:hover {
-  background: var(--main);
-  color: var(--secondary);
+  background: var(--accent);
+  color: var(--main);
   border-radius: 100px;
 }
 
 .active-btn {
-  background: var(--main);
-  color: var(--secondary);
+  background: var(--accent);
+  color: var(--main);
+}
+
+#all {
+  background: white;
 }
 
 /* SIGN UN */
@@ -288,6 +302,25 @@ button:hover {
   color: var(--secondary);
 }
 
+.congrats {
+  animation: congrats 0.5s forwards;
+  letter-spacing: 0px;
+}
+
+@keyframes congrats {
+  0% {
+    scale: 0.5;
+    opacity: 0;
+  }
+  85% {
+    scale: 1.05;
+    opacity: 1;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
 /* SIGN IN */
 .signin {
   background: transparent;
@@ -314,6 +347,7 @@ button:hover {
 .fav {
   display: flex;
   justify-content: center;
+  animation: pageLoad 0.5s forwards;
 }
 
 /* PROFILE */
@@ -322,6 +356,30 @@ button:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  animation: pageLoad 0.5s forwards;
+}
+
+@keyframes pageLoad {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.theme {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 50px;
+}
+
+.themes {
+  display: flex;
+  gap: 10px;
 }
 
 .delete--container {
@@ -329,7 +387,7 @@ button:hover {
   align-items: center;
   flex-direction: column;
   gap: 10px;
-  margin-top: 400px;
+  margin-top: 200px;
 }
 
 .delete--container p {
@@ -358,6 +416,18 @@ button:hover {
   perspective: 500px;
 
   animation: modal 1s forwards;
+}
+
+#blue {
+  background: #00ccff;
+}
+
+#orange {
+  background: orange;
+}
+
+#maroon {
+  background: #b00000;
 }
 
 @keyframes modal {
@@ -460,17 +530,15 @@ button:hover {
   bottom: 0;
   color: var(--accent);
   cursor: pointer;
-  text-shadow: 1px 1px 0px #003443, 2px 2px 0px #003443, 3px 3px 0px #003443,
-    4px 5px 0px #003443, 4px 4px 0px #003443, 0 0 10px #0000006d;
+  text-shadow: 1px 1px 0px var(--accent-shadow),
+    2px 2px 0px var(--accent-shadow), 3px 3px 0px var(--accent-shadow),
+    4px 5px 0px var(--accent-shadow), 4px 4px 0px var(--accent-shadow),
+    0 0 10px #0000006d;
   transition: all 0.5s;
 }
 
 .threeD:active {
   color: gold;
-}
-
-.on {
-  display: block;
 }
 
 .off {
@@ -487,11 +555,18 @@ button:hover {
   color: var(--secondary);
   border-radius: 100px;
   padding: 10px 20px;
+  text-transform: uppercase;
 }
 
 .stat ul {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-icons--container {
+  display: flex;
   align-items: center;
   gap: 5px;
 }

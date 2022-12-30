@@ -1,23 +1,25 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../UserContext';
 import { IoPersonOutline } from 'react-icons/io5';
+import { TbPokeball } from 'react-icons/tb';
+import { ImBin } from 'react-icons/im';
+import Theme from '../themes/Theme';
+import Blue from '../themes/Blue';
 
 export default function Profile(props) {
   const [isAuth, login, logout] = useContext(UserContext);
   const [modal, setModal] = useState(null);
 
   function show() {
-    console.log('show modal');
     setModal(true);
   }
 
   function hide() {
-    console.log('hide modal');
     setModal(false);
   }
 
   function deleteAccount() {
-    console.log('delete acc');
+    Blue();
     setModal(false);
     logout();
     localStorage.clear();
@@ -40,11 +42,14 @@ export default function Profile(props) {
           </div>
         )}
         <h1>
-          <IoPersonOutline /> Welcome, {localStorage.getItem('user')}!
+          <TbPokeball /> Welcome, {localStorage.getItem('user')}!
         </h1>
+        <Theme />
         <button onClick={logout}>SIGN OUT</button>
         <div className="delete--container">
-          <h3>PERMANENTLY DELETE ACCOUNT</h3>
+          <h3>
+            <ImBin /> PERMANENTLY DELETE ACCOUNT
+          </h3>
           <button className="delete--btn" onClick={show}>
             DELETE ACCOUNT
           </button>

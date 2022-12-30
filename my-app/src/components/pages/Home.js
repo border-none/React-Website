@@ -6,7 +6,10 @@ import { IoHeartOutline } from 'react-icons/io5';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
-  const [arr, setArr] = useState([]);
+  const [count, setCount] = useState(0);
+  const [arr, setArr] = useState({
+    0: '',
+  });
 
   useEffect(
     () =>
@@ -19,14 +22,18 @@ export default function Home(props) {
   );
 
   // useEffect(() => {
-  //   for (let i = 0; i < 100; i++) {
-  //     fetch(`https://pokeapi.co/api/v2/pokemon/${data.name}`)
-  //       .then((response) => response.json())
-  //       .then((json) => setArr(arr + json.url));
+  //   if (data) {
+  //     for (let i = 0; i < 100; i++) {
+  //       fetch(`${data[i].url}`)
+  //         .then((response) => response.json())
+  //         .then((json) => setArr({ i: json }));
+  //     }
   //   }
   // }, []);
 
-  // console.log(arr);
+  // if (arr) {
+  //   console.log(arr, ':D');
+  // }
 
   function onClick(e) {
     localStorage.setItem('clickedPokemon', e.target.firstChild.data);

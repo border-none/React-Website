@@ -492,6 +492,7 @@ button:hover {
 
 /* POKEMON */
 .pokemon__container {
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -501,6 +502,7 @@ button:hover {
   border: #0000002c 1px solid;
   border-radius: 10px;
   box-shadow: 0 0 10px #00000018, 0 0 20px #00000018;
+  user-select: none;
 }
 
 .pokemon__container h1 {
@@ -508,6 +510,7 @@ button:hover {
 }
 
 .pokemon-image {
+  user-select: none;
   height: 300px;
   transform-origin: bottom;
   animation: pokemon-image 0.3s forwards;
@@ -528,9 +531,38 @@ button:hover {
   }
 }
 
+.like-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 30px;
+  transition: all 0.3s;
+}
+
+.red {
+  color: red;
+  animation: red 0.4s forwards;
+}
+
+@keyframes red {
+  0% {
+    scale: 0.9;
+  }
+  50% {
+    scale: 1.2;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+.like-btn:hover {
+  cursor: pointer;
+}
+
 .threeD {
   position: absolute;
-  right: 50px;
+  right: 30px;
   bottom: 0;
   color: var(--accent);
   cursor: pointer;

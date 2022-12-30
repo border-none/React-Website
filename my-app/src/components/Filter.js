@@ -9,7 +9,7 @@ function Filter() {
   const buttonNodeList = document.querySelectorAll('.btn-container button');
   const buttonArr = Array.from(buttonNodeList);
 
-  function all(e) {
+  function all() {
     setType('ALL');
   }
 

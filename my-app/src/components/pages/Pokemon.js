@@ -3,6 +3,7 @@ import { IoShieldOutline, IoAdd, IoFlashOutline } from 'react-icons/io5';
 import { GiBroadsword, GiHealingShield, GiPointySword } from 'react-icons/gi';
 import PokemonImage2D from '../PokemonImage2D';
 import PokemonImage3D from '../PokemonImage3D';
+import { IoHeartOutline, IoHeartSharp } from 'react-icons/io5';
 
 function Pokemon() {
   const icons = [
@@ -19,6 +20,7 @@ function Pokemon() {
   const [threeD, setThreeD] = useState(null);
   const [data, setData] = useState({ name: '' });
   const [stat, setStat] = useState(null);
+  const [liked, setLiked] = useState(null);
 
   const imgNodeList = document.querySelectorAll('.pokemon-image');
   const imgArr = Array.from(imgNodeList);
@@ -53,26 +55,39 @@ function Pokemon() {
       );
     });
     return (
-      <div className="pokemon__container">
-        <div className="img-container on">
-          {threeD ? (
-            <PokemonImage2D data={data} />
+      <>
+        <div className="pokemon__container">
+          {liked ? (
+            <IoHeartSharp
+              onClick={() => setLiked(false)}
+              className="like-btn red"
+            />
           ) : (
-            <PokemonImage3D data={data} />
+            <IoHeartOutline
+              onClick={() => setLiked(true)}
+              className="like-btn"
+            />
           )}
+          <div className="img-container on">
+            {threeD ? (
+              <PokemonImage2D data={data} />
+            ) : (
+              <PokemonImage3D data={data} />
+            )}
+          </div>
+          <h1>{data.name.toUpperCase()}</h1>
+          <div className="stat">
+            <ul>{pokemonListWithIcons}</ul>
+          </div>
+          <div className="types">
+            <p>{[data.types[0]?.type.name]}</p>
+            {data.types[1]?.type.name && <p>{[data.types[1]?.type.name]}</p>}
+          </div>
         </div>
-        <h1>{data.name.toUpperCase()}</h1>
-        <div className="stat">
-          <ul>{pokemonListWithIcons}</ul>
-        </div>
-        <div className="types">
-          <p>{[data.types[0]?.type.name]}</p>
-          {data.types[1]?.type.name && <p>{[data.types[1]?.type.name]}</p>}
-          <h2 className="threeD" onClick={threeDToggle}>
-            {threeD ? '3D OFF' : '3D ON'}
-          </h2>
-        </div>
-      </div>
+        <h2 className="threeD" onClick={threeDToggle}>
+          {threeD ? '3D OFF' : '3D ON'}
+        </h2>
+      </>
     );
   } else {
     return <h1 className="loading">Loading...</h1>;

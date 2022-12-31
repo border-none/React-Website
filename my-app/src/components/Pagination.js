@@ -1,30 +1,33 @@
 function Pagination({ offset, setOffset, page, setPage }) {
+  console.log('💥 This is offset', offset);
   function nextPage() {
-    console.log('next');
-    console.log(offset, 'old state');
-    if (offset !== 1000) {
+    console.log('FUNCTION START___________________________');
+    console.log('offset when NEXT is clicked', offset);
+    if (offset !== 1100) {
+      console.log('setting offset', ' ', offset, ' ', '+100');
       setOffset(offset + 100);
-      console.log(offset, 'new state');
+      console.log('offset is now +100', offset);
 
       setPage(page + 1);
     }
+    console.log('FUNCTION END ___________________________');
   }
 
   function prevPage() {
-    console.log('prev');
-    console.log(offset, 'old state');
     if (offset !== 0) {
       setOffset(offset - 100);
-      console.log(offset, 'new state');
 
       setPage(page - 1);
     }
   }
+
+  console.log('CURRENT PAGE IS', page);
+
   return (
     <>
       <div className="pagination-btns">
         <button onClick={prevPage}>PREV</button>
-        <h3>{page}</h3>
+        <h3>{String(page).padStart(2, '0')}</h3>
         <button onClick={nextPage}>NEXT</button>
       </div>
     </>

@@ -1,9 +1,10 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Search from '../Search';
-import { Link } from 'react-router-dom';
+import { Link, useFetcher } from 'react-router-dom';
 import Filter from '../Filter';
 import { IoHeartOutline } from 'react-icons/io5';
 import Pagination from '../Pagination';
+import PokemonImages from '../PokemonImages';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
@@ -15,6 +16,7 @@ export default function Home(props) {
   useEffect(
     () =>
       async function fetchData() {
+        setArr([]);
         await fetch(
           `https://pokeapi.co/api/v2/pokemon?limit=100&offset=${offset}`
         )
@@ -34,28 +36,44 @@ export default function Home(props) {
     }
   }, [data]);
 
-  ///
-  // if (arr) {
-  //   const pokemonImg = arr.map((el, i) => {
-  //     console.log(el.sprites.front_default);
-  //   });
-  // }
-
   function onClick(e) {
-    localStorage.setItem('clickedPokemon', e.target.firstChild?.data);
-    console.log(e.target);
+    if (e.target.firstChild.data) {
+      localStorage.setItem('clickedPokemon', e.target.firstChild?.data);
+    }
+
+    // forms[0.name]
+  }
+
+  function onClickImage(e) {
+    const name =
+      e.nativeEvent.path[1].parentNode.firstChild.innerText.toLowerCase();
+
+    localStorage.setItem('clickedPokemon', name);
+
+    console.log(e.nativeEvent);
+    console.log(e.nativeEvent.path);
+    console.log(e.nativeEvent.path[1]);
+    console.log(
+      e.nativeEvent.path[1].parentNode.firstChild.innerText.toLowerCase()
+    );
   }
 
   if (data && arr) {
-    const pokemonImg = arr.map((el, i) => {
-      return <img src={el.sprites.front_shiny} />;
+    const pokemonImg = arr.map((el) => {
+      return (
+        <img className="pokemon-img-on-card" src={el.sprites.front_shiny} />
+      );
     });
 
     const pokemon = data.map((pokemon, i) => (
       <Link to="pokemon" key={i}>
-        <li className="card" onClick={onClick}>
-          <div className="poke-name">{pokemon.name}</div>
-          <div>{pokemonImg[i]}</div>
+        <li className="card">
+          <div onClick={onClick} className="poke-name">
+            {pokemon.name}
+          </div>
+          <div onClick={onClickImage}>
+            {pokemonImg[i] ? pokemonImg[i] : 'Loading...'}
+          </div>
           {<IoHeartOutline />}
         </li>
       </Link>

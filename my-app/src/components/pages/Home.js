@@ -8,12 +8,9 @@ import Pagination from '../Pagination';
 export default function Home(props) {
   const [data, setData] = useState(null);
   const [count, setCount] = useState(0);
-  const [arr, setArr] = useState({
-    0: '',
-  });
+  const [arr, setArr] = useState([]);
   const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
-  console.log(offset);
 
   useEffect(
     () =>
@@ -27,34 +24,39 @@ export default function Home(props) {
     [page]
   );
 
-  // useEffect(() => {
-  //   if (data) {
-  //     for (let i = 0; i < 100; i++) {
-  //       fetch(`${data[i].url}`)
-  //         .then((response) => response.json())
-  //         .then((json) => setArr({ i: json }));
-  //     }
-  //   }
-  // }, []);
+  useLayoutEffect(() => {
+    if (data) {
+      for (let i = 0; i < 100; i++) {
+        fetch(`${data[i].url}`)
+          .then((response) => response.json())
+          .then((json) => setArr((items) => [...items, json]));
+      }
+    }
+  }, [data]);
 
+  ///
   // if (arr) {
-  //   console.log(arr, ':D');
+  //   const pokemonImg = arr.map((el, i) => {
+  //     console.log(el.sprites.front_default);
+  //   });
   // }
 
   function onClick(e) {
-    localStorage.setItem('clickedPokemon', e.target.firstChild.data);
+    localStorage.setItem('clickedPokemon', e.target.firstChild?.data);
+    console.log(e.target);
   }
 
-  function like() {
-    //
-  }
+  if (data && arr) {
+    const pokemonImg = arr.map((el, i) => {
+      return <img src={el.sprites.front_shiny} />;
+    });
 
-  if (data) {
     const pokemon = data.map((pokemon, i) => (
-      <Link to="pokemon" onClick={onClick} key={i}>
-        <li className="card">
-          {pokemon.name}
-          {<IoHeartOutline onClick={like} />}
+      <Link to="pokemon" key={i}>
+        <li className="card" onClick={onClick}>
+          <div className="poke-name">{pokemon.name}</div>
+          <div>{pokemonImg[i]}</div>
+          {<IoHeartOutline />}
         </li>
       </Link>
     ));

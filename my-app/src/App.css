@@ -142,7 +142,7 @@ ul.home {
   background: black;
   box-shadow: 0 0 10px #00000091;
   margin: 0 auto;
-  width: 300px;
+  width: 270px;
   padding: 10px 0;
   border-radius: 100px;
 }
@@ -152,6 +152,7 @@ ul.home {
 }
 
 .pagination-btns h3 {
+  font-weight: 400;
   margin: 0;
   color: var(--accent);
   font-size: 30px;
@@ -225,7 +226,8 @@ ul.home {
 
 .card {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-between; */
   gap: 10px;
 
   border: 1px #0000002c solid;
@@ -236,11 +238,27 @@ ul.home {
   border-radius: 3px;
   cursor: pointer;
 
+  box-shadow: 0 0 10px #00000023;
+  border-radius: 10px;
+
   transition: all 0.1s;
 }
 
 .card:hover {
   scale: 1.1;
+}
+
+.card svg {
+  font-size: 30px;
+}
+
+.poke-name {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.card img {
+  width: 150px;
 }
 
 .home li {

@@ -1,17 +1,18 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Search from '../Search';
-import { Link, useFetcher } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Filter from '../Filter';
 import { IoHeartOutline } from 'react-icons/io5';
 import Pagination from '../Pagination';
-import PokemonImages from '../PokemonImages';
+import RingLoader from 'react-spinners/ClipLoader';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
   const [count, setCount] = useState(0);
   const [arr, setArr] = useState([]);
-  const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
+
+  const offset = String(page - 1).padEnd(3, '0');
 
   useEffect(
     () =>
@@ -49,13 +50,6 @@ export default function Home(props) {
       e.nativeEvent.path[1].parentNode.firstChild.innerText.toLowerCase();
 
     localStorage.setItem('clickedPokemon', name);
-
-    console.log(e.nativeEvent);
-    console.log(e.nativeEvent.path);
-    console.log(e.nativeEvent.path[1]);
-    console.log(
-      e.nativeEvent.path[1].parentNode.firstChild.innerText.toLowerCase()
-    );
   }
 
   if (data && arr) {
@@ -72,7 +66,7 @@ export default function Home(props) {
             {pokemon.name}
           </div>
           <div onClick={onClickImage}>
-            {pokemonImg[i] ? pokemonImg[i] : 'Loading...'}
+            {pokemonImg[i] ? pokemonImg[i] : <RingLoader />}
           </div>
           {<IoHeartOutline />}
         </li>
@@ -85,19 +79,16 @@ export default function Home(props) {
           <Search placeholder="search pokemon..." data={data} />
           <Filter />
           <ul className="home">{pokemon}</ul>
-          <Pagination
-            offset={offset}
-            setOffset={setOffset}
-            page={page}
-            setPage={setPage}
-          />
+          <Pagination page={page} setPage={setPage} />
         </div>
       </>
     );
   } else {
     return (
       <>
-        <h1 className="loading">Loading...</h1>
+        <h1 className="loading">
+          <RingLoader />
+        </h1>
       </>
     );
   }

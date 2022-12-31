@@ -17,8 +17,6 @@ export default function SignUp() {
   const onSubmit = (data) => {
     window.localStorage.setItem('user', data.user);
     window.localStorage.setItem('password', data.password);
-    console.log(data, 'data from FORM');
-    const obj = JSON.stringify(data);
     setCreated(true);
   };
 

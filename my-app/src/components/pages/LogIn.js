@@ -14,7 +14,6 @@ export default function LogIn() {
   } = useForm();
 
   function onSubmit(data) {
-    console.log('Submitted. Recieved input is', data);
     if (
       localStorage.getItem('user') === data.user &&
       localStorage.getItem('password') === data.password
@@ -24,7 +23,6 @@ export default function LogIn() {
       setUserInfo('Create an account first! 💥');
     } else {
       setUserInfo('Wrong username or password! 💥');
-      console.error('Wrong username or password! 💥');
     }
   }
 

@@ -35,7 +35,6 @@ function App() {
 
   if (window.localStorage.getItem('theme') && count2 === 0) {
     setCount2(count2 + 1);
-    console.log('theme remains');
   }
 
   const heartIcon = (

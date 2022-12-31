@@ -4,6 +4,7 @@ import { GiBroadsword, GiHealingShield, GiPointySword } from 'react-icons/gi';
 import PokemonImage2D from '../PokemonImage2D';
 import PokemonImage3D from '../PokemonImage3D';
 import { IoHeartOutline, IoHeartSharp } from 'react-icons/io5';
+import RingLoader from 'react-spinners/ClipLoader';
 
 function Pokemon() {
   const icons = [
@@ -91,7 +92,11 @@ function Pokemon() {
       </>
     );
   } else {
-    return <h1 className="loading">Loading...</h1>;
+    return (
+      <h1 className="loading">
+        <RingLoader />
+      </h1>
+    );
   }
 }
 

@@ -1,25 +1,46 @@
-function Pagination({ offset, setOffset, page, setPage }) {
-  function nextPage() {
-    if (offset !== 1100) {
-      setOffset(offset + 100);
+import { useState } from 'react';
 
-      setPage(page + 1);
-    }
+function Pagination({ page, setPage }) {
+  const [show, setShow] = useState(null);
+
+  function nextPage() {
+    setPage(page + 1);
   }
 
-  function prevPage() {
-    if (offset !== 0) {
-      setOffset(offset - 100);
-
+  function prevPage(prev) {
+    if (page >= 2) {
       setPage(page - 1);
     }
+    console.log(page, prev);
+  }
+
+  function pageSelect(number) {
+    setPage(number);
+    show ? setShow(false) : setShow(true);
+    console.log(page);
+  }
+
+  function toggle() {
+    show ? setShow(false) : setShow(true);
   }
 
   return (
     <>
       <div className="pagination-btns">
+        {show && (
+          <div className="page-select">
+            <button onClick={() => pageSelect(1)}>1</button>
+            <button onClick={() => pageSelect(2)}>2</button>
+            <button onClick={() => pageSelect(3)}>3</button>
+            <button onClick={() => pageSelect(4)}>4</button>
+            <button onClick={() => pageSelect(5)}>5</button>
+            <button onClick={() => pageSelect(6)}>6</button>
+            <button onClick={() => pageSelect(7)}>7</button>
+            <button onClick={() => pageSelect(8)}>8</button>
+          </div>
+        )}
         <button onClick={prevPage}>PREV</button>
-        <h3>{String(page).padStart(2, '0')}</h3>
+        <h3 onClick={toggle}>{String(page).padStart(2, '0')}</h3>
         <button onClick={nextPage}>NEXT</button>
       </div>
     </>

@@ -46,7 +46,7 @@ function Filter() {
   }
 
   useEffect(() => {
-    if (type) {
+    if (type && type !== 'ALL') {
       fetch(`https://pokeapi.co/api/v2/type/${type}`)
         .then((response) => response.json())
         .then((json) => setData(json));
@@ -90,7 +90,7 @@ function Filter() {
     }
     pokemonType = data.pokemon.map((el, i) => {
       return (
-        <Link to="pokemon" onClick={onClick}>
+        <Link to="pokemon" onClick={onClick} key={i}>
           <li key={i} className="card">
             {el.pokemon.name.toUpperCase()}
             {<IoHeartOutline />}

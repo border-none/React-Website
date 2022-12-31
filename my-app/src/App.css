@@ -140,6 +140,7 @@ ul.home {
   position: sticky;
   bottom: 20px;
   background: black;
+  box-shadow: 0 0 10px #00000091;
   margin: 0 auto;
   width: 300px;
   padding: 10px 0;
@@ -539,6 +540,10 @@ button:hover {
 
 #maroon {
   background: #b00000;
+}
+
+#pink {
+  background: #fd68ee;
 }
 
 /* POKEMON */

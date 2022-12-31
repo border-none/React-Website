@@ -1,6 +1,7 @@
 import Blue from './Blue';
 import Maroon from './Maroon';
 import Orange from './Orange';
+import Pink from './Pink';
 
 function Theme() {
   if (window.localStorage.getItem('theme') === 'orange') {
@@ -24,6 +25,9 @@ function Theme() {
           </button>
           <button id="maroon" onClick={() => Maroon()}>
             MAROON
+          </button>
+          <button id="pink" onClick={() => Pink()}>
+            PINK
           </button>
         </div>
       </div>

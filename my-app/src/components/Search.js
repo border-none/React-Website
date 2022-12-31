@@ -1,20 +1,34 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { IoCloseOutline, IoSearchOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { UserContext } from './UserContext';
 
-function Search({ placeholder, data }) {
+function Search({ placeholder }) {
   const [filteredData, setFilteredData] = useState([]);
   const [input, setInput] = useState('');
   const inputRef = useRef();
   const [isAuth, login, logout, count, setCount] = useContext(UserContext);
+  const [data, setData] = useState();
+
+  useEffect(
+    () =>
+      async function fetchData() {
+        await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0`)
+          .then((response) => response.json())
+          .then((json) => setData(json.results));
+      },
+    []
+  );
 
   const handleFilter = (e) => {
     const searchWord = e.target.value.toLowerCase();
     const searchWordStrict = searchWord.replace(/[^A-Za-z]/gi, '');
     setInput(searchWordStrict.toUpperCase());
     const newFilter = data.filter((value) => {
-      return value.name.includes(searchWordStrict);
+      return (
+        value.name[0] === searchWordStrict[0] &&
+        value.name.includes(searchWordStrict)
+      );
     });
     if (searchWordStrict === '') {
       setFilteredData([]);
@@ -55,7 +69,7 @@ function Search({ placeholder, data }) {
       </div>
       {filteredData.length !== 0 && (
         <div className="data-result">
-          {filteredData.slice(0, 8).map((pokemon, key) => {
+          {filteredData.map((pokemon, key) => {
             return (
               <Link
                 onClick={onClick}

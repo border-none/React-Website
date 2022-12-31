@@ -29,13 +29,8 @@ export default function LogIn() {
   }
 
   return (
-    <>
-      <div className="errors">
-        {userInfo && <p>{userInfo}</p>}
-        {errors.user?.message && <p>{errors.user?.message}</p>}
-        {errors.password?.message && <p>{errors.password?.message}</p>}
-      </div>
-      <form className="signin" onSubmit={handleSubmit(onSubmit)}>
+    <div className="signin">
+      <form className="signin--form" onSubmit={handleSubmit(onSubmit)}>
         <h1>SIGN IN</h1>
         <input
           type="text"
@@ -49,6 +44,11 @@ export default function LogIn() {
         />
         <button>SIGN IN</button>
       </form>
-    </>
+      <div className="errors">
+        {userInfo && <p>{userInfo}</p>}
+        {errors.user?.message && <p>{errors.user?.message}</p>}
+        {errors.password?.message && <p>{errors.password?.message}</p>}
+      </div>
+    </div>
   );
 }

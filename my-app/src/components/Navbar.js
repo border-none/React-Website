@@ -1,4 +1,4 @@
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import { Link, NavLink, useMatch, useResolvedPath } from 'react-router-dom';
 
 export default function Navbar(props) {
   return (
@@ -7,8 +7,12 @@ export default function Navbar(props) {
         POKEMONZA
       </Link>
       <ul>
-        <CustomLink to="/signin">{props.main}</CustomLink>
-        <CustomLink to="/signup">{props.secondary}</CustomLink>
+        <CustomLink to="/signin">
+          <p>{props.main}</p>
+        </CustomLink>
+        <CustomLink to="/signup">
+          <p>{props.secondary}</p>
+        </CustomLink>
       </ul>
     </nav>
   );
@@ -19,7 +23,7 @@ function CustomLink({ link, children, ...props }) {
   const isActive = useMatch({ path: resolvedPath.pathname });
 
   return (
-    <li className={isActive ? '' : ''}>
+    <li className={isActive.pathname ? '' : ''}>
       <Link to={link} {...props}>
         {children}
       </Link>

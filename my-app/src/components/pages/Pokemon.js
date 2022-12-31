@@ -54,6 +54,7 @@ function Pokemon() {
         </div>
       );
     });
+
     return (
       <>
         <div className="pokemon__container">
@@ -68,7 +69,7 @@ function Pokemon() {
               className="like-btn"
             />
           )}
-          <div className="img-container on">
+          <div className="img-container on" onClick={threeDToggle}>
             {threeD ? (
               <PokemonImage2D data={data} />
             ) : (

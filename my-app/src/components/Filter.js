@@ -64,12 +64,12 @@ function Filter() {
     }
     pokemonType = data.pokemon.map((el, i) => {
       return (
-        <li key={i} className="card">
-          <Link to="pokemon" onClick={onClick}>
+        <Link to="pokemon" onClick={onClick}>
+          <li key={i} className="card">
             {el.pokemon.name.toUpperCase()}
-          </Link>
-          {<IoHeartOutline />}
-        </li>
+            {<IoHeartOutline />}
+          </li>
+        </Link>
       );
     });
   }
@@ -88,8 +88,8 @@ function Filter() {
       </div>
       {type !== 'ALL' && (
         <div>
-          <ul className="home">{pokemonType}</ul>
-          <h3>{pokemonType && 'ALL POKEMON'}</h3>
+          {pokemonType && <ul className="home">{pokemonType}</ul>}
+          {pokemonType && <h3>ALL POKEMON</h3>}
         </div>
       )}
     </div>

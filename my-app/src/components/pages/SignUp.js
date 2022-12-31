@@ -25,10 +25,6 @@ export default function SignUp() {
   if (!created) {
     return (
       <div className="signup">
-        <div className="errors">
-          {errors.user?.message && <p>{errors.user?.message}</p>}
-          {errors.password?.message && <p>{errors.password.message}</p>}
-        </div>
         <form onSubmit={handleSubmit(onSubmit)} className="signup--card">
           <h1>CREATE ACCOUNT</h1>
           <input
@@ -48,6 +44,10 @@ export default function SignUp() {
           />
           <button>SIGN UP</button>
         </form>
+        <div className="errors">
+          {errors.user?.message && <p>{errors.user?.message}</p>}
+          {errors.password?.message && <p>{errors.password.message}</p>}
+        </div>
       </div>
     );
   } else {

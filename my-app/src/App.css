@@ -450,8 +450,17 @@ button:hover {
 /* FAV */
 .fav {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   animation: pageLoad 0.5s forwards;
+  margin: 20px;
+}
+
+.fav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 /* PROFILE */

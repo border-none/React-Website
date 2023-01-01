@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { IoShieldOutline, IoAdd, IoFlashOutline } from 'react-icons/io5';
+import {
+  IoShieldOutline,
+  IoAdd,
+  IoFlashOutline,
+  IoTimeSharp,
+} from 'react-icons/io5';
 import { GiBroadsword, GiHealingShield, GiPointySword } from 'react-icons/gi';
 import PokemonImage2D from '../PokemonImage2D';
 import PokemonImage3D from '../PokemonImage3D';
@@ -40,6 +45,26 @@ function Pokemon() {
     fetch(`data.stats[0].stat.url`).then((json) => setStat(json));
   }, []);
 
+  function like() {
+    const pokeName = document.querySelector('h1').innerText.toLowerCase();
+    if (window.localStorage.getItem('favorites')) {
+      setLiked(true);
+      const current = JSON.parse(window.localStorage.getItem('favorites'));
+      const liked = [...current, pokeName];
+
+      window.localStorage.setItem('favorites', JSON.stringify(liked));
+    } else {
+      setLiked(true);
+      window.localStorage.setItem('favorites', JSON.stringify([pokeName]));
+    }
+  }
+
+  function dislike() {
+    setLiked(false);
+    const pokeName = document.querySelector('h1').innerText.toLowerCase();
+    window.localStorage.removeItem('favorites', pokeName);
+  }
+
   if (data.name !== '') {
     const pokemonList = data.stats.map((pokemon, i) => {
       return (
@@ -60,15 +85,9 @@ function Pokemon() {
       <>
         <div className="pokemon__container">
           {liked ? (
-            <IoHeartSharp
-              onClick={() => setLiked(false)}
-              className="like-btn red"
-            />
+            <IoHeartSharp onClick={dislike} className="like-btn red" />
           ) : (
-            <IoHeartOutline
-              onClick={() => setLiked(true)}
-              className="like-btn"
-            />
+            <IoHeartOutline onClick={like} className="like-btn" />
           )}
           <div className="img-container on" onClick={threeDToggle}>
             {threeD ? (

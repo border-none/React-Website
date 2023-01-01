@@ -43,6 +43,13 @@ ul li {
   width: 450px;
 }
 
+.ringloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
 .nav {
   background: var(--main);
   color: var(--secondary);

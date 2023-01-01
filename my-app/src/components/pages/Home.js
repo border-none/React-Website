@@ -5,6 +5,7 @@ import Filter from '../Filter';
 import { IoHeartOutline } from 'react-icons/io5';
 import Pagination from '../Pagination';
 import RingLoader from 'react-spinners/ClipLoader';
+import LikeButton from '../LikeButton';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
@@ -66,9 +67,12 @@ export default function Home(props) {
             {pokemon.name}
           </div>
           <div onClick={onClickImage}>
-            {pokemonImg[i] ? pokemonImg[i] : <RingLoader />}
+            {pokemonImg[i] ? (
+              pokemonImg[i]
+            ) : (
+              <RingLoader className="ringloader" />
+            )}
           </div>
-          {<IoHeartOutline />}
         </li>
       </Link>
     ));
@@ -87,7 +91,7 @@ export default function Home(props) {
     return (
       <>
         <h1 className="loading">
-          <RingLoader />
+          <RingLoader className="ringloader" />
         </h1>
       </>
     );

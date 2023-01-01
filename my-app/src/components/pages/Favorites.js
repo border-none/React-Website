@@ -3,24 +3,22 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Favorites() {
-  const [data, setData] = useState(false);
-  // const [favPokemons,setFavPokemons]=useState(null)
+  const [data, setData] = useState([]);
 
-  const favArr = JSON.parse(window.localStorage.getItem('favorites'));
-  console.log(favArr, 'fav');
+  const favArr =
+    window.localStorage.getItem('favorites') &&
+    JSON.parse(window.localStorage.getItem('favorites'));
+
   useEffect(() => {
-    if (data.length >= favArr?.length) {
-      return;
-    }
     if (favArr) {
       for (let i = 0; i < favArr?.length; i++) {
+        console.log(favArr[i]);
         fetch(`https://pokeapi.co/api/v2/pokemon/${favArr[i]}`)
           .then((response) => response.json())
           .then((json) =>
-            setData((items) => {
-              console.log(items, 'items');
-              if (favArr.length === 1) {
-                return [...items, json];
+            setData(() => {
+              if (favArr.length !== 1) {
+                return [...data, json];
               }
               return [json];
             })
@@ -28,6 +26,8 @@ export default function Favorites() {
       }
     }
   }, []);
+  console.log(favArr, 'data from local storage');
+  console.log(data, 'fetched data');
 
   function clearLikes() {
     window.localStorage.removeItem('favorites');
@@ -42,6 +42,11 @@ export default function Favorites() {
           {window.localStorage.getItem('user') &&
             window.localStorage.getItem('user')}
         </h1>
+        <h2>
+          {favArr?.map((el) => (
+            <li className="card">{el}</li>
+          ))}
+        </h2>
         <div>
           <ul className="home">
             {data &&
@@ -55,7 +60,7 @@ export default function Favorites() {
               })}
           </ul>
         </div>
-        {data && <button onClick={clearLikes}>DELETE ALL LIKES</button>}
+        {favArr && <button onClick={clearLikes}>DELETE ALL LIKES</button>}
       </div>
     </>
   );

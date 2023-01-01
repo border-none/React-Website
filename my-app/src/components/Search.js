@@ -48,8 +48,6 @@ function Search({ placeholder }) {
     location.search('/');
   }
 
-  console.log(location.pathname);
-
   return (
     <div className="search">
       <div className="search--input">

@@ -41,12 +41,15 @@ function App() {
 
   const heartIcon = (
     <div>
-      <IoHeartOutline /> FAVORITES
+      <IoHeartOutline /> <span className="text">FAVORITES</span>
     </div>
   );
   const personIcon = (
     <div>
-      <IoPersonOutline /> {localStorage.getItem('user')?.toUpperCase()}
+      <IoPersonOutline />{' '}
+      <span className="text">
+        {localStorage.getItem('user')?.toUpperCase()}
+      </span>
     </div>
   );
 

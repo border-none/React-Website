@@ -44,10 +44,7 @@ function LikeButton(props) {
     window.localStorage.removeItem('favorites', currentPokemonName);
 
     for (let i = 0; i < favoritesArr.length; i++) {
-      console.log('loop started', favoritesArr, favoritesArr.length);
       if (favoritesArr[i] === currentPokemonName) {
-        console.log(favoritesArr[i], 'looping through this name');
-
         setLiked(false);
         favoritesArr.splice(i, 1);
         window.localStorage.setItem('favorites', JSON.stringify(favoritesArr));
@@ -55,12 +52,6 @@ function LikeButton(props) {
     }
   }
 
-  console.log('---------------------------');
-  console.log(currentPokemonName, 'cur name');
-  console.log(favoritesArr, 'array of liked pokemon');
-  console.log(favorites?.includes(currentPokemonName), 'includes?');
-  console.log('---------------------------');
-  // includes || favorites?.includes(currentPokemonName)
   return (
     <>
       {liked ? (

@@ -55,7 +55,7 @@ function Pokemon() {
         </div>
       );
     });
-    console.log(loggedIn, 'logged in ?');
+
     return (
       <>
         <div className="pokemon__container">

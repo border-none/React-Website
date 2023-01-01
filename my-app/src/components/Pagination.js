@@ -11,13 +11,11 @@ function Pagination({ page, setPage }) {
     if (page >= 2) {
       setPage(page - 1);
     }
-    console.log(page, prev);
   }
 
   function pageSelect(number) {
     setPage(number);
     show ? setShow(false) : setShow(true);
-    console.log(page);
   }
 
   function toggle() {

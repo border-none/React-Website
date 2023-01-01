@@ -1,19 +1,15 @@
 import { IoHeartOutline, IoHomeOutline } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
-import LikeButton from '../LikeButton';
 import { Link } from 'react-router-dom';
 
 export default function Favorites() {
-  console.log('START \n START \n GO');
   const [data, setData] = useState(null);
 
   const favArr =
     window.localStorage.getItem('favorites') &&
     JSON.parse(window.localStorage.getItem('favorites'));
 
-  let container = [];
   function push(json) {
-    console.log(json.name, '🍕\n lol lol !!!!!! this is incoming json');
     if (data) {
       return setData([...data, json.name]);
     }
@@ -23,18 +19,12 @@ export default function Favorites() {
   useEffect(() => {
     if (favArr) {
       for (const [i, pokemon] of favArr.entries()) {
-        console.log('fetching', pokemon);
         fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
           .then((response) => response.json())
           .then((json) => push(json));
       }
     }
   }, []);
-
-  console.log(data, '! \n THIS IS DATA');
-  setTimeout(() => {
-    console.log(data, '! \n THIS IS DATA');
-  }, 1000);
 
   function clearLikes() {
     window.localStorage.removeItem('favorites');
@@ -53,7 +43,8 @@ export default function Favorites() {
       {favArr ? (
         <div className="fav">
           <h1>
-            {IoHeartOutline()} Favorite pokemons of{' '}
+            {IoHeartOutline()} {favArr.length} Favorite pokemon
+            {favArr.length === 1 ? '' : 's'} of{' '}
             {window.localStorage.getItem('user') &&
               window.localStorage.getItem('user')}
           </h1>
@@ -87,6 +78,11 @@ export default function Favorites() {
         <div className="fav">
           <h2>YOUR LIKED POKEMONS WILL BE DISPLAYED HERE</h2>
           <h1>GO LIKE SOME!</h1>
+          <Link to="/">
+            <h1 className="active">
+              <IoHomeOutline /> HOME
+            </h1>
+          </Link>
         </div>
       )}
     </>

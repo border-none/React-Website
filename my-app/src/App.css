@@ -126,6 +126,25 @@ nav.nav {
   color: var(--accent);
 }
 
+@media (max-width: 1000px) {
+  nav.nav {
+    gap: 0;
+  }
+  .nav ul {
+    gap: 10px;
+  }
+  .search input {
+    width: 78px;
+  }
+  .text {
+    display: none;
+  }
+  ul li p {
+    font-size: 30px;
+    margin: 10px;
+  }
+}
+
 /* HOME */
 .container {
   margin: 20px;
@@ -216,15 +235,6 @@ ul.home {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   text-align: start;
-}
-
-@media (max-width: 1000px) {
-  .search input {
-    width: 60px;
-  }
-  .LOL1 {
-    display: none;
-  }
 }
 
 .search--input {

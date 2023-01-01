@@ -26,8 +26,6 @@ function Filter() {
   }
 
   function onClickImage(e) {
-    console.log('CLICK IMAGED');
-    console.log(e);
     const name =
       e.nativeEvent.path[1].parentNode.firstChild.innerText.toLowerCase();
 
@@ -48,24 +46,6 @@ function Filter() {
       }
     }
   }, [type]);
-
-  // useEffect(() => {
-  //   if (data && type && type !== 'ALL') {
-  //     for (const pokemon of data.pokemon) {
-  //       fetch(`${pokemon?.pokemon['url']}`)
-  //         .then((response) => response.json())
-  //         .then((json) => setImg((items) => [...items, json]));
-  //     }
-  //   }
-  // }, [type]);
-
-  if (data) {
-    console.log(data, 'THIS IS DATA \n THIS IS DATA');
-  }
-
-  if (img) {
-    console.log(img, 'IMG \n IMG \n IMG!!!!!');
-  }
 
   let pokemonType;
 

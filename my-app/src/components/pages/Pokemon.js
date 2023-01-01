@@ -3,7 +3,6 @@ import { IoShieldOutline, IoAdd, IoFlashOutline } from 'react-icons/io5';
 import { GiBroadsword, GiHealingShield, GiPointySword } from 'react-icons/gi';
 import PokemonImage2D from '../PokemonImage2D';
 import PokemonImage3D from '../PokemonImage3D';
-import { IoHeartOutline, IoHeartSharp } from 'react-icons/io5';
 import RingLoader from 'react-spinners/ClipLoader';
 import LikeButton from '../LikeButton';
 
@@ -18,6 +17,7 @@ function Pokemon() {
   ];
 
   const clickedPokemon = localStorage.getItem('clickedPokemon');
+  const loggedIn = JSON.parse(window.localStorage.getItem('loggedIn'));
 
   const [threeD, setThreeD] = useState(null);
   const [data, setData] = useState({ name: '' });
@@ -55,11 +55,12 @@ function Pokemon() {
         </div>
       );
     });
-
+    console.log(loggedIn, 'logged in ?');
     return (
       <>
         <div className="pokemon__container">
-          <LikeButton />
+          {loggedIn && <LikeButton />}
+
           <div className="img-container on" onClick={threeDToggle}>
             {threeD ? (
               <PokemonImage2D data={data} />

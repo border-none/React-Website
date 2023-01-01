@@ -470,6 +470,17 @@ button:hover {
   justify-content: flex-start;
 }
 
+.fav button:hover {
+  background: #f84545;
+}
+
+.likes-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 /* PROFILE */
 .profile {
   display: flex;

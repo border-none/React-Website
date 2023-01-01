@@ -1,6 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IoHeartOutline } from 'react-icons/io5';
 
 function Filter() {
   const [data, setData] = useState(null);
@@ -14,28 +13,9 @@ function Filter() {
     setType('ALL');
   }
 
-  function water() {
-    setType('water');
-  }
-
-  function fire() {
-    setType('fire');
-  }
-
-  function grass() {
-    setType('grass');
-  }
-
-  function ground() {
-    setType('ground');
-  }
-
-  function normal() {
-    setType('normal');
-  }
-
-  function fairy() {
-    setType('fairy');
+  function setTypeOnClick(e) {
+    const getButtonText = e.target.firstChild.nodeValue.toLowerCase();
+    setType(getButtonText);
   }
 
   function onClick(e) {
@@ -51,73 +31,72 @@ function Filter() {
         .then((response) => response.json())
         .then((json) => setData(json));
     }
+    if (data && type && type !== 'ALL') {
+      for (const pokemon of data.pokemon) {
+        fetch(`${pokemon?.pokemon['url']}`)
+          .then((response) => response.json())
+          .then((json) => setImg((items) => [...items, json]));
+      }
+    }
   }, [type]);
 
-  // useLayoutEffect(() => {
-  //   if (data) {
-  //     setImg([]);
-  //     for (let i = 0; i < 100; i++) {
-  //       fetch(`${data.pokemon[i].pokemon.url}`)
+  // useEffect(() => {
+  //   if (data && type && type !== 'ALL') {
+  //     for (const pokemon of data.pokemon) {
+  //       fetch(`${pokemon?.pokemon['url']}`)
   //         .then((response) => response.json())
-  //         .then((json) =>
-  //           setImg((items) => [...items, json.sprites.front_shiny])
-  //         );
+  //         .then((json) => setImg((items) => [...items, json]));
   //     }
   //   }
-  // }, [data]);
+  // }, [type]);
 
   if (data) {
-    // console.log(data.pokemon[0].pokemon.url);
+    console.log(data, 'THIS IS DATA \n THIS IS DATA');
   }
 
   if (img) {
-    // const mappedImg=img.map((el,i)=> {
-    //   return (<li key={i}>
-    //     <img src="el" alt="" />
-    //   </li>)
-    // })
+    console.log(img, 'IMG \n IMG \n IMG!!!!!');
   }
 
   let pokemonType;
 
-  if (data && img) {
-    {
-      buttonArr.map((el, i) => {
-        el.innerText === type.toUpperCase()
-          ? el.classList.add('active-btn')
-          : el.classList.remove('active-btn');
-      });
-    }
-    pokemonType = data.pokemon.map((el, i) => {
-      return (
-        <Link to="pokemon" onClick={onClick} key={i}>
-          <li key={i} className="card">
-            {el.pokemon.name.toUpperCase()}
-            {<IoHeartOutline />}
-          </li>
-        </Link>
-      );
+  {
+    buttonArr.map((el, i) => {
+      el.innerText === type.toUpperCase()
+        ? el.classList.add('active-btn')
+        : el.classList.remove('active-btn');
     });
   }
+  pokemonType = data?.pokemon.map((el, i) => {
+    return (
+      <Link to="pokemon" onClick={onClick} key={i}>
+        <li key={i} className="card poke-name">
+          {el.pokemon.name.toUpperCase()}
+          <img src={img[i]?.sprites.front_shiny} alt="" />
+          {/* {<LikeButton />} */}
+        </li>
+      </Link>
+    );
+  });
 
   return (
     <div className="container type">
-      {img.map((el, i) => {
+      {/* {img.map((el, i) => {
         <li key={i}>
           <img src={el} alt="" />
         </li>;
-      })}
+      })} */}
 
       <div className="btn-container">
         <button id="all" onClick={all}>
           ALL
         </button>
-        <button onClick={water}>WATER</button>
-        <button onClick={fire}>FIRE</button>
-        <button onClick={grass}>GRASS</button>
-        <button onClick={ground}>GROUND</button>
-        <button onClick={normal}>NORMAL</button>
-        <button onClick={fairy}>FAIRY</button>
+        <button onClick={setTypeOnClick}>WATER</button>
+        <button onClick={setTypeOnClick}>FIRE</button>
+        <button onClick={setTypeOnClick}>GRASS</button>
+        <button onClick={setTypeOnClick}>GROUND</button>
+        <button onClick={setTypeOnClick}>NORMAL</button>
+        <button onClick={setTypeOnClick}>FAIRY</button>
       </div>
       {type !== 'ALL' && (
         <div>

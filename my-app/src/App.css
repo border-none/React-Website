@@ -50,6 +50,12 @@ ul li {
   margin: auto;
 }
 
+nav.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
 .nav {
   background: var(--main);
   color: var(--secondary);
@@ -200,6 +206,8 @@ ul.home {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-bottom: 0.5px #ffffff45 solid;
+  border-radius: 5px;
 }
 
 .search input {
@@ -210,12 +218,22 @@ ul.home {
   text-align: start;
 }
 
+@media (max-width: 1000px) {
+  .search input {
+    width: 60px;
+  }
+  .LOL1 {
+    display: none;
+  }
+}
+
 .search--input {
   display: flex;
   justify-content: center;
 }
 
 .search--icon {
+  color: var(--accent) !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -229,8 +247,8 @@ ul.home {
 }
 
 .data-result {
+  box-shadow: 0 0 10px var(--main);
   background: var(--main);
-  box-shadow: inset 0 0 10px 5px rgb(62, 62, 62), inset 0 0 10px rgb(36, 36, 36);
   padding: 0 20px;
   width: 300px;
   min-height: 30px;
@@ -239,7 +257,7 @@ ul.home {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   position: absolute;
-  top: 135px;
+  top: 55px;
   overflow: hidden;
   overflow-y: scroll;
   z-index: 999;

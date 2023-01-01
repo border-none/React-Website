@@ -1,11 +1,13 @@
 import { Link, NavLink, useMatch, useResolvedPath } from 'react-router-dom';
+import Search from './Search';
 
 export default function Navbar(props) {
   return (
     <nav className="nav">
       <Link to="/" id="title" className="site-title">
-        POKEMONZA
+        POKEMONINA
       </Link>
+      <Search placeholder="search pokemon..." />
       <ul>
         <CustomLink to="/signin">
           <p>{props.main}</p>

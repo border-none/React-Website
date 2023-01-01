@@ -45,7 +45,14 @@ export default function Profile(props) {
           <TbPokeball /> Welcome, {localStorage.getItem('user')}!
         </h1>
         <Theme />
-        <button onClick={logout}>SIGN OUT</button>
+        <button
+          onClick={() => {
+            logout();
+            document.location.reload();
+          }}
+        >
+          SIGN OUT
+        </button>
         <div className="delete--container">
           <h3>
             <ImBin /> PERMANENTLY DELETE ACCOUNT

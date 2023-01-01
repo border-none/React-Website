@@ -1,13 +1,12 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { IoCloseOutline, IoSearchOutline } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
+import { Link, Route, useLocation } from 'react-router-dom';
 import { UserContext } from './UserContext';
 
 function Search({ placeholder }) {
   const [filteredData, setFilteredData] = useState([]);
   const [input, setInput] = useState('');
   const inputRef = useRef();
-  const [isAuth, login, logout, count, setCount] = useContext(UserContext);
   const [data, setData] = useState();
 
   useEffect(
@@ -43,11 +42,13 @@ function Search({ placeholder }) {
     inputRef.current.focus();
   };
 
+  let location = useLocation();
   function onClick(e) {
-    setCount(count + 1);
     localStorage.setItem('clickedPokemon', e.target.childNodes[0].wholeText);
-    localStorage.setItem(count, e.target.childNodes[0].wholeText);
+    location.search('/');
   }
+
+  console.log(location.pathname);
 
   return (
     <div className="search">

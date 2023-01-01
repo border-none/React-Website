@@ -25,6 +25,15 @@ function Filter() {
     );
   }
 
+  function onClickImage(e) {
+    console.log('CLICK IMAGED');
+    console.log(e);
+    const name =
+      e.nativeEvent.path[1].parentNode.firstChild.innerText.toLowerCase();
+
+    localStorage.setItem('clickedPokemon', name);
+  }
+
   useEffect(() => {
     if (type && type !== 'ALL') {
       fetch(`https://pokeapi.co/api/v2/type/${type}`)
@@ -60,24 +69,32 @@ function Filter() {
 
   let pokemonType;
 
-  {
-    buttonArr.map((el, i) => {
-      el.innerText === type.toUpperCase()
-        ? el.classList.add('active-btn')
-        : el.classList.remove('active-btn');
+  if (data && img) {
+    {
+      buttonArr.map((el, i) => {
+        el.innerText === type.toUpperCase()
+          ? el.classList.add('active-btn')
+          : el.classList.remove('active-btn');
+      });
+    }
+    pokemonType = data.pokemon.map((el, i) => {
+      return (
+        <Link to="pokemon" key={i}>
+          <li key={i} className="card">
+            <div onClick={onClick} className="poke-name">
+              {el.pokemon.name.toUpperCase()}
+            </div>
+            <img
+              src={img[i]?.sprites.front_shiny}
+              onClick={onClickImage}
+              alt=""
+            />
+            {/* {<LikeButton />} */}
+          </li>
+        </Link>
+      );
     });
   }
-  pokemonType = data?.pokemon.map((el, i) => {
-    return (
-      <Link to="pokemon" onClick={onClick} key={i}>
-        <li key={i} className="card poke-name">
-          {el.pokemon.name.toUpperCase()}
-          <img src={img[i]?.sprites.front_shiny} alt="" />
-          {/* {<LikeButton />} */}
-        </li>
-      </Link>
-    );
-  });
 
   return (
     <div className="container type">

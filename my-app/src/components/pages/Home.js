@@ -42,8 +42,6 @@ export default function Home(props) {
     if (e.target.firstChild.data) {
       localStorage.setItem('clickedPokemon', e.target.firstChild?.data);
     }
-
-    // forms[0.name]
   }
 
   function onClickImage(e) {
@@ -80,7 +78,6 @@ export default function Home(props) {
     return (
       <>
         <div className="container">
-          <Search placeholder="search pokemon..." data={data} />
           <Filter />
           <ul className="home">{pokemon}</ul>
           <Pagination page={page} setPage={setPage} />

@@ -16,19 +16,21 @@ import Orange from './components/themes/Orange';
 import Maroon from './components/themes/Maroon';
 
 function App() {
-  if (window.localStorage.getItem('theme') === 'orange') {
-    Orange();
-  } else if (window.localStorage.getItem('theme') === 'maroon') {
-    Maroon();
-  } else if (window.localStorage.getItem('theme') === 'blue') {
-    Blue();
+  if (window.localStorage.getItem('loggedIn') === 'true') {
+    if (window.localStorage.getItem('theme') === 'orange') {
+      Orange();
+    } else if (window.localStorage.getItem('theme') === 'maroon') {
+      Maroon();
+    } else if (window.localStorage.getItem('theme') === 'blue') {
+      Blue();
+    }
   }
 
   const [isAuth, login, logout] = useAuth(false);
   const [count, setCount] = useState(0);
   const [count2, setCount2] = useState(0);
 
-  if (window.localStorage.getItem('loggedIn') && count === 0) {
+  if (window.localStorage.getItem('loggedIn') === 'true' && count === 0) {
     setCount(count + 1);
     login();
   }

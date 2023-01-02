@@ -5,7 +5,6 @@ import { TbPokeball } from 'react-icons/tb';
 import { ImBin } from 'react-icons/im';
 import Theme from '../themes/Theme';
 import Blue from '../themes/Blue';
-import { Navigate, redirect } from 'react-router-dom';
 
 export default function Profile(props) {
   const [isAuth, login, logout] = useContext(UserContext);

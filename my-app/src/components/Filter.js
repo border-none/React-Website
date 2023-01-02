@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Filter() {
   const [data, setData] = useState(null);
   const [type, setType] = useState();
-  const [img, setImg] = useState([]);
+  const [img, setImg] = useState(null);
 
   const buttonNodeList = document.querySelectorAll('.btn-container button');
   const buttonArr = Array.from(buttonNodeList);
@@ -32,12 +32,13 @@ function Filter() {
     localStorage.setItem('clickedPokemon', name);
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (type && type !== 'ALL') {
       fetch(`https://pokeapi.co/api/v2/type/${type}`)
         .then((response) => response.json())
         .then((json) => setData(json));
     }
+    setImg([]);
     if (data && type && type !== 'ALL') {
       for (const pokemon of data.pokemon) {
         fetch(`${pokemon?.pokemon['url']}`)
@@ -57,6 +58,13 @@ function Filter() {
           : el.classList.remove('active-btn');
       });
     }
+
+    const pokemonImg = img.map((el, i) => {
+      return (
+        <img src={el?.sprites.front_shiny} onClick={onClickImage} alt="" />
+      );
+    });
+
     pokemonType = data.pokemon.map((el, i) => {
       return (
         <Link to="pokemon" key={i}>
@@ -64,11 +72,7 @@ function Filter() {
             <div onClick={onClick} className="poke-name">
               {el.pokemon.name.toUpperCase()}
             </div>
-            <img
-              src={img[i]?.sprites.front_shiny}
-              onClick={onClickImage}
-              alt=""
-            />
+            {pokemonImg ? pokemonImg[i] : 'loading'}
             {/* {<LikeButton />} */}
           </li>
         </Link>

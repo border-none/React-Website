@@ -1,23 +1,37 @@
 import { IoHeartOutline, IoHomeOutline } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Modal from '../Modal';
 
 export default function Favorites() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
+  const [img, setImg] = useState([]);
+  const [modal, setModal] = useState(null);
 
   const favArr =
     window.localStorage.getItem('favorites') &&
     JSON.parse(window.localStorage.getItem('favorites'));
 
+  let pokemonName = [];
+  let pokemonImg = [];
+
   function push(json) {
-    if (data) {
-      return setData([...data, json.name]);
+    if (favArr.length === pokemonName.length) {
+      return;
     }
-    return setData([json.name]);
+    setImg([]);
+
+    pokemonName = [...pokemonName, json.name];
+    setData(pokemonName);
+
+    pokemonImg = [...pokemonImg, json.sprites.front_shiny];
+    setImg(pokemonImg);
   }
 
   useEffect(() => {
     if (favArr) {
+      setData([]);
+      setImg([]);
       for (const [i, pokemon] of favArr.entries()) {
         fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
           .then((response) => response.json())
@@ -38,37 +52,41 @@ export default function Favorites() {
     );
   }
 
+  function onClickImage(e) {
+    const name =
+      e.nativeEvent.path[1].parentNode.firstChild.innerText.toLowerCase();
+
+    localStorage.setItem('clickedPokemon', name);
+  }
+
   return (
     <>
       {favArr ? (
         <div className="fav">
           <h1>
-            {IoHeartOutline()} {favArr.length} Favorite pokemon
+            {<IoHeartOutline />} {favArr.length} Favorite pokemon
             {favArr.length === 1 ? '' : 's'} of{' '}
             {window.localStorage.getItem('user') &&
               window.localStorage.getItem('user')}
           </h1>
-          <div>
-            <h2 className="likes-container">
-              {favArr?.map((el, i) => (
-                <Link to="../pokemon" onClick={onClick} key={i}>
-                  <li className="card" key={i}>
-                    {el}
-                  </li>
-                </Link>
-              ))}
-            </h2>
+          <div className="fav-container">
             <div>
-              <ul className="">
-                {/* {data &&
+              <ul className="home">
+                {data &&
                   data.map((el, i) => {
                     return (
-                      <li className="card" key={i}>
-                        <div className="poke-name">{el}</div>
-                        <img src={el.sprites.front_shiny} alt="" />
-                      </li>
+                      <Link to="../pokemon" onClick={onClick} key={i}>
+                        <li className="card" key={i}>
+                          <div className="poke-name">{el}</div>
+                          {img ? (
+                            <img src={img[i]} onClick={onClickImage} alt="" />
+                          ) : (
+                            'Loading'
+                          )}
+                        </li>
+                      </Link>
                     );
-                  })} */}
+                  })}
               </ul>
             </div>
           </div>

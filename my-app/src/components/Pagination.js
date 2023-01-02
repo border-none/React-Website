@@ -17,6 +17,9 @@ function Pagination({ page, setPage }) {
 
   function pageSelect(number) {
     setPage(number);
+    setTimeout(() => {
+      console.log(page);
+    }, 1000);
     show ? setShow(false) : setShow(true);
   }
 

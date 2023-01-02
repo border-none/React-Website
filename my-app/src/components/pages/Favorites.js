@@ -17,7 +17,7 @@ export default function Favorites() {
 
   function push(json) {
     if (
-      favArr.length === pokemonName.length &&
+      favArr.length === pokemonName.length ||
       pokemonName.includes(json.name)
     ) {
       return;
@@ -26,21 +26,20 @@ export default function Favorites() {
     setData([]);
 
     pokemonName = [...pokemonName, json.name];
-    setData(pokemonName);
 
     pokemonImg = [...pokemonImg, json.sprites.front_shiny];
+
+    setData(pokemonName);
     setImg(pokemonImg);
   }
 
   useEffect(() => {
-    if (favArr) {
-      setData([]);
-      setImg([]);
-      for (const [i, pokemon] of favArr.entries()) {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-          .then((response) => response.json())
-          .then((json) => push(json));
-      }
+    setData([]);
+    setImg([]);
+    for (const [i, pokemon] of favArr.entries()) {
+      fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+        .then((response) => response.json())
+        .then((json) => push(json));
     }
   }, []);
 
@@ -52,8 +51,9 @@ export default function Favorites() {
   function onClick(e) {
     localStorage.setItem(
       'clickedPokemon',
-      e.target.firstChild.data.toLowerCase()
+      e.target.parentNode.firstChild.innerText.toLowerCase()
     );
+    // console.log(e.target.parentNode.firstChild.innerText);
   }
 
   function onClickImage(e) {

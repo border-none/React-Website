@@ -9,6 +9,39 @@ function Filter() {
   const buttonNodeList = document.querySelectorAll('.btn-container button');
   const buttonArr = Array.from(buttonNodeList);
 
+  useEffect(() => {
+    let sub;
+    if (!sub) {
+      if (type && type !== 'ALL') {
+        fetch(`https://pokeapi.co/api/v2/type/${type}`)
+          .then((response) => response.json())
+          .then((json) => setData(json));
+      }
+    }
+
+    return () => {
+      sub = true;
+    };
+  }, [type]);
+
+  useLayoutEffect(() => {
+    let sub;
+    if (!sub) {
+      if (data && type !== 'ALL') {
+        setImg([]);
+        for (const pokemon of data.pokemon) {
+          fetch(`${pokemon.pokemon['url']}`)
+            .then((response) => response.json())
+            .then((json) => setImg((items) => [...items, json]));
+        }
+      }
+    }
+
+    return () => {
+      sub = true;
+    };
+  }, [data]);
+
   function all() {
     setType('ALL');
   }
@@ -31,29 +64,6 @@ function Filter() {
 
     localStorage.setItem('clickedPokemon', name);
   }
-
-  useLayoutEffect(() => {
-    let sub;
-    if (!sub) {
-      if (type && type !== 'ALL') {
-        fetch(`https://pokeapi.co/api/v2/type/${type}`)
-          .then((response) => response.json())
-          .then((json) => setData(json));
-      }
-      setImg([]);
-      if (data && type && type !== 'ALL') {
-        for (const pokemon of data.pokemon) {
-          fetch(`${pokemon?.pokemon['url']}`)
-            .then((response) => response.json())
-            .then((json) => setImg((items) => [...items, json]));
-        }
-      }
-    }
-
-    return () => {
-      sub = true;
-    };
-  }, [type]);
 
   let pokemonType;
 

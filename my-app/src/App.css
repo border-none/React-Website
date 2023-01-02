@@ -504,6 +504,12 @@ button:hover {
   margin: 0 auto;
 }
 
+.fav h2 {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 .fav button {
   display: flex;
   justify-content: center;

@@ -65,7 +65,10 @@ function Pokemon() {
             {threeD ? (
               <PokemonImage2D data={data} />
             ) : (
-              <PokemonImage3D data={data} />
+              <>
+                <PokemonImage3D data={data} />
+                <PokemonImage3D data={data} />
+              </>
             )}
           </div>
           <h1>{data.name.toUpperCase()}</h1>

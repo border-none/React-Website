@@ -683,6 +683,31 @@ button:hover {
   border-radius: 10px;
   box-shadow: 0 0 10px #00000018, 0 0 20px #00000018;
   user-select: none;
+
+  animation: onload 0.5s forwards ease;
+  transition: all 0.4s;
+}
+
+@keyframes onload {
+  0% {
+    opacity: 0;
+    filter: brightness(100%);
+    filter: blur(4px);
+    scale: 0.2;
+    transform: perspective(200px) rotateX(20deg) rotateY(1deg);
+  }
+  64% {
+    opacity: 1;
+    filter: brightness(110%);
+    scale: 1.03;
+    transform: perspective(200px) rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    scale: 1;
+    filter: blur(0px);
+    filter: brightness(100%);
+    transform: perspective(200px) rotateX(0deg) rotateY(0deg);
+  }
 }
 
 .pokemon__container h1 {
@@ -710,6 +735,35 @@ button:hover {
     height: 300px;
     width: 300px;
   }
+}
+
+.pokemon-image:nth-child(2) {
+  z-index: -1;
+  rotate: 180deg;
+  transform: scaleX(-1);
+  position: absolute;
+  top: -10px;
+  left: 75px;
+  fill: white;
+  -webkit-mask-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(0, 0, 0, 0)),
+    to(rgba(0, 0, 0, 0))
+  );
+  mask-image: linear-gradient(to top, #00000092, transparent 35%);
+}
+
+.pokemon-image::before {
+  content: 'LOL';
+  display: flex;
+  width: 300px;
+  height: 300px;
+  background: red;
+  position: absolute;
+  left: 75px;
+  z-index: 9999;
 }
 
 .like-btn {

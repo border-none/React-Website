@@ -17,7 +17,7 @@ export default function Home(props) {
 
   useEffect(() => {
     setArr([]);
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=100&offset=${offset}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=54&offset=${offset}`)
       .then((response) => response.json())
       .then((json) => setData(json.results));
   }, [page]);
@@ -25,7 +25,7 @@ export default function Home(props) {
   useLayoutEffect(() => {
     if (data) {
       for (let i = 0; i < 100; i++) {
-        fetch(`${data[i].url}`)
+        fetch(`${data[i]?.url}`)
           .then((response) => response.json())
           .then((json) => setArr((items) => [...items, json]));
       }

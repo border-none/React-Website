@@ -34,11 +34,11 @@ function Pokemon() {
     fetch(`https://pokeapi.co/api/v2/pokemon/${clickedPokemon}`)
       .then((response) => response.json())
       .then((json) => setData(json));
-  }, []);
+  }, [clickedPokemon]);
 
   useEffect(() => {
     fetch(`data.stats[0].stat.url`).then((json) => setStat(json));
-  }, []);
+  }, [clickedPokemon]);
 
   if (data.name !== '') {
     const pokemonList = data.stats.map((pokemon, i) => {

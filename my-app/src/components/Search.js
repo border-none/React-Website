@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { IoCloseOutline, IoSearchOutline } from 'react-icons/io5';
-import { Link, Route, useLocation } from 'react-router-dom';
+import { Link, Navigate, NavLink, Route, useLocation } from 'react-router-dom';
 import { UserContext } from './UserContext';
 
 function Search({ placeholder }) {
@@ -44,8 +44,12 @@ function Search({ placeholder }) {
 
   let location = useLocation();
   function onClick(e) {
+    if (location.pathname === '/pokemon') {
+      document.location.reload();
+    }
     localStorage.setItem('clickedPokemon', e.target.childNodes[0].wholeText);
-    location.search('/');
+    setInput('');
+    setFilteredData([]);
   }
 
   return (
@@ -70,13 +74,8 @@ function Search({ placeholder }) {
         <div className="data-result">
           {filteredData.map((pokemon, key) => {
             return (
-              <Link
-                onClick={onClick}
-                className="data-item"
-                to="/pokemon"
-                key={key}
-              >
-                <p>{pokemon.name}</p>
+              <Link className="data-item" to="/pokemon" key={key}>
+                <p onClick={onClick}>{pokemon.name}</p>
               </Link>
             );
           })}

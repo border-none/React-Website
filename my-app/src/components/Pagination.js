@@ -4,12 +4,14 @@ function Pagination({ page, setPage }) {
   const [show, setShow] = useState(null);
 
   function nextPage() {
-    setPage(page + 1);
+    setPage((prevPage) => prevPage + 1);
+    console.log(page, 'PAGE');
   }
 
-  function prevPage(prev) {
+  function prevPage() {
     if (page >= 2) {
-      setPage(page - 1);
+      setPage((prevPage) => prevPage - 1);
+      console.log(page, 'PAGE');
     }
   }
 

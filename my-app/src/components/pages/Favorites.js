@@ -16,10 +16,14 @@ export default function Favorites() {
   let pokemonImg = [];
 
   function push(json) {
-    if (favArr.length === pokemonName.length) {
+    if (
+      favArr.length === pokemonName.length &&
+      pokemonName.includes(json.name)
+    ) {
       return;
     }
     setImg([]);
+    setData([]);
 
     pokemonName = [...pokemonName, json.name];
     setData(pokemonName);

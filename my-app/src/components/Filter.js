@@ -33,19 +33,26 @@ function Filter() {
   }
 
   useLayoutEffect(() => {
-    if (type && type !== 'ALL') {
-      fetch(`https://pokeapi.co/api/v2/type/${type}`)
-        .then((response) => response.json())
-        .then((json) => setData(json));
-    }
-    setImg([]);
-    if (data && type && type !== 'ALL') {
-      for (const pokemon of data.pokemon) {
-        fetch(`${pokemon?.pokemon['url']}`)
+    let sub;
+    if (!sub) {
+      if (type && type !== 'ALL') {
+        fetch(`https://pokeapi.co/api/v2/type/${type}`)
           .then((response) => response.json())
-          .then((json) => setImg((items) => [...items, json]));
+          .then((json) => setData(json));
+      }
+      setImg([]);
+      if (data && type && type !== 'ALL') {
+        for (const pokemon of data.pokemon) {
+          fetch(`${pokemon?.pokemon['url']}`)
+            .then((response) => response.json())
+            .then((json) => setImg((items) => [...items, json]));
+        }
       }
     }
+
+    return () => {
+      sub = true;
+    };
   }, [type]);
 
   let pokemonType;

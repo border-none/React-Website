@@ -672,6 +672,7 @@ button:hover {
 
 /* POKEMON */
 .pokemon__container {
+  background: rgba(0, 0, 0, 0.16);
   position: relative;
   display: flex;
   align-items: center;
@@ -679,7 +680,7 @@ button:hover {
   margin: 0 auto;
   margin-top: 40px;
   width: 450px;
-  border: #0000002c 1px solid;
+  /* border: #0000002c 1px solid; */
   border-radius: 10px;
   box-shadow: 0 0 10px #00000018, 0 0 20px #00000018;
   user-select: none;
@@ -692,7 +693,6 @@ button:hover {
   0% {
     opacity: 0;
     filter: brightness(100%);
-    filter: blur(4px);
     scale: 0.2;
     transform: perspective(200px) rotateX(20deg) rotateY(1deg);
   }
@@ -704,7 +704,6 @@ button:hover {
   }
   100% {
     scale: 1;
-    filter: blur(0px);
     filter: brightness(100%);
     transform: perspective(200px) rotateX(0deg) rotateY(0deg);
   }
@@ -781,7 +780,7 @@ button:hover {
 
 @keyframes red {
   0% {
-    scale: 0.9;
+    scale: 0.8;
   }
   50% {
     scale: 1.2;

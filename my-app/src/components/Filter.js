@@ -27,14 +27,16 @@ function Filter() {
   useLayoutEffect(() => {
     let sub;
     if (!sub) {
-      if (data && type !== 'ALL') {
-        setImg([]);
-        for (const pokemon of data.pokemon) {
-          fetch(`${pokemon.pokemon['url']}`)
-            .then((response) => response.json())
-            .then((json) => setImg((items) => [...items, json]));
+      setTimeout(() => {
+        if (data && type !== 'ALL') {
+          setImg([]);
+          for (const pokemon of data.pokemon) {
+            fetch(`${pokemon.pokemon['url']}`)
+              .then((response) => response.json())
+              .then((json) => setImg((items) => [...items, json]));
+          }
         }
-      }
+      }, 500);
     }
 
     return () => {

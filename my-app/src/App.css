@@ -13,7 +13,6 @@
 
 body {
   margin: 0;
-  /* overflow: hidden; */
 }
 
 a {
@@ -315,7 +314,7 @@ ul.home {
 
 .card:hover {
   scale: 1.1;
-  box-shadow: 4px 4px 10px #00000023, 0 0 2px 0px var(--accent);
+  box-shadow: 4px 4px 10px #00000023;
 }
 
 .card svg {
@@ -407,9 +406,9 @@ input {
 button {
   background-color: var(--secondary);
   color: var(--main);
-  border: none;
+  border: none !important;
   border-radius: 5px;
-  padding: 10px 15px;
+  padding: 13px 17px;
   border: black 1px solid;
   font-size: 17px;
   font-weight: 600;
@@ -535,6 +534,7 @@ button:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   animation: pageLoad 0.5s forwards;
 }
 
@@ -548,6 +548,15 @@ button:hover {
 }
 
 .theme {
+  background: linear-gradient(
+    to top right,
+    var(--accent-shadow),
+    var(--accent)
+  );
+  box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent-shadow);
+  color: white;
+  padding: 30px 50px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -559,6 +568,10 @@ button:hover {
 .themes {
   display: flex;
   gap: 10px;
+}
+
+.themes button {
+  border: none;
 }
 
 .delete--container {
@@ -655,9 +668,9 @@ button:hover {
   background: #f84545;
   color: white;
 }
-
+/* 
 #blue {
-  background: #00ccff;
+  border: #00ccff 1px solid;
 }
 
 #orange {
@@ -670,7 +683,7 @@ button:hover {
 
 #pink {
   background: #fd68ee;
-}
+} */
 
 /* POKEMON */
 .pokemon__container {

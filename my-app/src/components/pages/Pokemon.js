@@ -109,9 +109,9 @@ function Pokemon() {
             {data.types[1]?.type.name && <p>{[data.types[1]?.type.name]}</p>}
           </div>
         </div>
-        {/* <h2 className="threeD" onClick={threeDToggle}>
-              {threeD ? '3D OFF' : '3D ON'}
-            </h2> */}
+        <h2 className="threeD" onClick={threeDToggle}>
+          {threeD ? '3D OFF' : '3D ON'}
+        </h2>
         {/* </div> */}
         {/* </div> */}
       </>

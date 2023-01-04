@@ -16,10 +16,12 @@ export default function Home(props) {
   const offset = String(page - 1).padEnd(3, '0');
 
   useEffect(() => {
-    setArr([]);
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=100&offset=${offset}`)
-      .then((response) => response.json())
-      .then((json) => setData(json.results));
+    setTimeout(() => {
+      setArr([]);
+      fetch(`https://pokeapi.co/api/v2/pokemon?limit=100&offset=${offset}`)
+        .then((response) => response.json())
+        .then((json) => setData(json.results));
+    }, 500);
   }, [page]);
 
   useLayoutEffect(() => {

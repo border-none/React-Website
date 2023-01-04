@@ -4,18 +4,21 @@ function Pagination({ page, setPage }) {
   const [show, setShow] = useState(null);
 
   function nextPage() {
+    up();
     setPage((prevPage) => prevPage + 1);
     console.log(page, 'PAGE');
   }
 
   function prevPage() {
     if (page >= 2) {
+      up();
       setPage((prevPage) => prevPage - 1);
       console.log(page, 'PAGE');
     }
   }
 
   function pageSelect(number) {
+    up();
     setPage(number);
     setTimeout(() => {
       console.log(page);
@@ -25,6 +28,13 @@ function Pagination({ page, setPage }) {
 
   function toggle() {
     show ? setShow(false) : setShow(true);
+  }
+
+  function up() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }
 
   return (

@@ -1,6 +1,8 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../UserContext';
+import { Link } from 'react-router-dom';
+import { BiLogIn } from 'react-icons/bi';
 
 export default function SignUp() {
   const [isAuth, login, logout] = useContext(UserContext);
@@ -51,7 +53,16 @@ export default function SignUp() {
   } else {
     return (
       <div className="signup">
-        <h1 className="congrats">🔥 ACCOUNT CREATED! TRY LOGGIN IN! 🔥</h1>
+        <Link to="/signup">
+          <h1 className="congrats">
+            🔥 ACCOUNT CREATED! TRY{' '}
+            <span className="active">
+              {' '}
+              SIGNING IN! <BiLogIn />
+            </span>{' '}
+            🔥
+          </h1>
+        </Link>
       </div>
     );
   }

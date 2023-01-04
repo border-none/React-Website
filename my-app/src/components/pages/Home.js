@@ -25,15 +25,21 @@ export default function Home(props) {
   }, [page]);
 
   useLayoutEffect(() => {
-    if (data) {
-      setTimeout(() => {
-        for (let i = 0; i < 100; i++) {
-          fetch(`${data[i]?.url}`)
-            .then((response) => response.json())
-            .then((json) => setArr((items) => [...items, json]));
-        }
-      }, 500);
+    let sub;
+    if (!sub) {
+      if (data) {
+        setTimeout(() => {
+          for (let i = 0; i < 100; i++) {
+            fetch(`${data[i]?.url}`)
+              .then((response) => response.json())
+              .then((json) => setArr((items) => [...items, json]));
+          }
+        }, 500);
+      }
     }
+    return () => {
+      sub = false;
+    };
   }, [data]);
 
   function onClick(e) {
@@ -52,7 +58,10 @@ export default function Home(props) {
   if (data && arr) {
     const pokemonImg = arr.map((el) => {
       return (
-        <img className="pokemon-img-on-card" src={el.sprites.front_shiny} />
+        <>
+          <img className="pokemon-img-on-card" src={el.sprites.front_shiny} />
+          <img className="pokemon-img-on-card" src={el.sprites.front_shiny} />
+        </>
       );
     });
 

@@ -1,4 +1,4 @@
-import { Link, NavLink, useMatch, useResolvedPath } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Search from './Search';
 
 export default function Navbar(props) {

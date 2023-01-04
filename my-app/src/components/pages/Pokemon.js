@@ -40,9 +40,6 @@ function Pokemon() {
   const [data, setData] = useState({ name: '' });
   const [stat, setStat] = useState(null);
 
-  const imgNodeList = document.querySelectorAll('.pokemon-image');
-  const imgArr = Array.from(imgNodeList);
-
   const threeDToggle = () => {
     threeD ? setThreeD(false) : setThreeD(true);
   };

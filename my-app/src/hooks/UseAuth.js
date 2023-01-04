@@ -3,8 +3,6 @@ import { useState } from 'react';
 export default function useAuth(initialValue) {
   const [isAuth, setIsAuth] = useState(initialValue);
 
-  const [count, setCount] = useState(0);
-
   function login() {
     setIsAuth(true);
     window.localStorage.setItem('loggedIn', true);

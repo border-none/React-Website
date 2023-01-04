@@ -27,9 +27,9 @@ function Filter() {
   useLayoutEffect(() => {
     let sub;
     if (!sub) {
+      setImg([]);
       setTimeout(() => {
         if (data && type !== 'ALL') {
-          setImg([]);
           for (const pokemon of data.pokemon) {
             fetch(`${pokemon.pokemon['url']}`)
               .then((response) => response.json())
@@ -80,7 +80,10 @@ function Filter() {
 
     const pokemonImg = img.map((el, i) => {
       return (
-        <img src={el?.sprites.front_shiny} onClick={onClickImage} alt="" />
+        <>
+          <img src={el?.sprites.front_shiny} onClick={onClickImage} alt="" />
+          <img src={el?.sprites.front_shiny} onClick={onClickImage} alt="" />
+        </>
       );
     });
 

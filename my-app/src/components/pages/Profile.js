@@ -42,7 +42,8 @@ export default function Profile(props) {
           </div>
         )}
         <h1>
-          <TbPokeball /> Welcome, {localStorage.getItem('user')}!
+          <TbPokeball />
+          Welcome, {localStorage.getItem('user')}!
         </h1>
         <Theme />
         <button

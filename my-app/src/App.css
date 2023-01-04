@@ -20,6 +20,15 @@ a {
   color: var(--main);
 }
 
+a span {
+  display: flex;
+  align-items: center;
+}
+
+a span svg {
+  font-size: 40px;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -27,6 +36,12 @@ ul {
 
 ul li {
   list-style: none;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .active {
@@ -147,7 +162,7 @@ nav.nav {
 /* HOME */
 .container {
   margin: 20px;
-  animation: pageLoad 0.5s forwards;
+  animation: on-load 0.5s forwards;
 }
 
 ul.home {
@@ -157,8 +172,6 @@ ul.home {
 }
 
 .home {
-  /* overflow-y: scroll; */
-  /* max-height: 60vh; */
   display: grid;
   grid-template-columns: repeat(auto-fit, 200px);
   gap: 20px;
@@ -270,6 +283,7 @@ ul.home {
   overflow: hidden;
   overflow-y: scroll;
   z-index: 999;
+  animation: on-load 0.2s forwards;
 }
 
 .data-result a {
@@ -298,7 +312,7 @@ ul.home {
   gap: 10px;
 
   background: rgba(128, 128, 128, 0.139);
-  /* border: 1px #0000002c solid; */
+  border: 1px #0000002c solid;
   padding: 10px 20px;
 
   text-transform: uppercase;
@@ -310,6 +324,8 @@ ul.home {
   border-radius: 10px;
 
   transition: all 0.1s;
+  position: relative;
+  overflow: hidden;
 }
 
 .card:hover {
@@ -328,6 +344,16 @@ ul.home {
 
 .card img {
   width: 150px;
+}
+
+.card img:nth-of-type(2) {
+  width: 600px;
+  position: absolute;
+  left: -200px;
+  top: -200px;
+
+  filter: blur(13px) brightness(150%) saturate(200%);
+  opacity: 0.15;
 }
 
 .home li {
@@ -369,7 +395,7 @@ ul.home {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  animation: pageLoad 0.5s forwards;
+  animation: on-load 0.5s forwards;
 }
 
 .signup--card {
@@ -399,9 +425,9 @@ input {
   text-align: center;
 }
 
-/* .signin input {
+.signin input {
   width: 70%;
-} */
+}
 
 button {
   background-color: var(--secondary);
@@ -434,6 +460,8 @@ button:hover {
   border-radius: 100px;
   padding: 10px 30px;
   color: var(--secondary);
+  box-shadow: 0 0 10px black;
+  animation: on-load 0.2s forwards;
 }
 
 .congrats {
@@ -461,7 +489,7 @@ button:hover {
 }
 
 .signin--form {
-  background: transparent;
+  background: linear-gradient(#00000018, #00000023);
   color: var(--main);
   width: 400px;
   border: 1px #00000054 solid;
@@ -476,7 +504,7 @@ button:hover {
   justify-content: center;
   text-align: center;
   gap: 20px;
-  animation: pageLoad 0.5s forwards;
+  animation: on-load 0.5s forwards;
 }
 
 .signin input {
@@ -489,7 +517,7 @@ button:hover {
   /* flex-direction: column; */
   align-items: center;
   justify-content: center;
-  animation: pageLoad 0.5s forwards;
+  animation: on-load 0.5s forwards;
   margin: 20px;
 }
 
@@ -528,6 +556,12 @@ button:hover {
   gap: 20px;
 }
 
+.gap {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
 /* PROFILE */
 .profile {
   display: flex;
@@ -535,10 +569,10 @@ button:hover {
   align-items: center;
   flex-direction: column;
 
-  animation: pageLoad 0.5s forwards;
+  animation: on-load 0.5s forwards;
 }
 
-@keyframes pageLoad {
+@keyframes on-load {
   0% {
     opacity: 0;
   }
@@ -761,7 +795,7 @@ button:hover {
   cursor: pointer;
   height: 300px;
   transform-origin: bottom;
-  animation: pokemon-image 0.3s forwards;
+  animation: pokemon-image 0.3s forwards, on-load 0.4s forwards;
 }
 
 @keyframes pokemon-image {
@@ -795,6 +829,7 @@ button:hover {
     to(#00000092)
   );
   mask-image: linear-gradient(to top, #00000092, transparent 35%);
+  animation: pokemon-image 0.3s forwards, on-load 0.7s forwards;
 }
 
 .like-btn {

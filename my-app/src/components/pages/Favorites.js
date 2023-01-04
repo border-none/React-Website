@@ -85,7 +85,10 @@ export default function Favorites() {
                         <li className="card" key={i}>
                           <div className="poke-name">{el}</div>
                           {img ? (
-                            <img src={img[i]} onClick={onClickImage} alt="" />
+                            <>
+                              <img src={img[i]} onClick={onClickImage} alt="" />
+                              <img src={img[i]} onClick={onClickImage} alt="" />
+                            </>
                           ) : (
                             'Loading'
                           )}
@@ -99,7 +102,7 @@ export default function Favorites() {
           <button onClick={clearLikes}>DELETE ALL LIKES</button>
         </div>
       ) : (
-        <div className="fav">
+        <div className="fav gap">
           <h2>YOUR LIKED POKEMONS WILL BE DISPLAYED HERE</h2>
           <h1>GO LIKE SOME!</h1>
           <Link to="/">

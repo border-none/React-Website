@@ -9,6 +9,8 @@ import SignUp from './components/pages/SignUp';
 import LogIn from './components/pages/LogIn';
 import { UserContext } from './components/UserContext';
 import { IoHeartOutline, IoPersonOutline } from 'react-icons/io5';
+import { MdOutlineAccountCircle } from 'react-icons/md';
+import { BiLogIn } from 'react-icons/bi';
 import Pokemon from './components/pages/Pokemon';
 import { useEffect, useState } from 'react';
 import Blue from './components/themes/Blue';
@@ -43,11 +45,12 @@ function App() {
     setCount2(count2 + 1);
   }
 
-  const heartIcon = (
+  const favoritesBtn = (
     <div>
       <IoHeartOutline /> <span className="text">FAVORITES</span>
     </div>
   );
+
   const personIcon = (
     <div>
       <IoPersonOutline />{' '}
@@ -57,12 +60,24 @@ function App() {
     </div>
   );
 
+  const signUpBtn = (
+    <div>
+      <MdOutlineAccountCircle /> <span className="text">SIGN UP</span>
+    </div>
+  );
+
+  const signInBtn = (
+    <div>
+      <BiLogIn /> <span className="text">SIGN IN</span>
+    </div>
+  );
+
   return (
     <>
       <Navbar
-        main={isAuth ? heartIcon : 'SIGN UP'}
+        main={isAuth ? favoritesBtn : signUpBtn}
         secondary={
-          isAuth && localStorage.getItem('user') ? personIcon : 'SIGN IN'
+          isAuth && localStorage.getItem('user') ? personIcon : signInBtn
         }
       />
       <UserContext.Provider value={[isAuth, login, logout, count, setCount]}>

@@ -7,12 +7,14 @@ import Pink from './Pink';
 function Theme() {
   const [curTheme, setCurTheme] = useState(null);
 
-  if (window.localStorage.getItem('theme') === 'orange') {
+  if (window.localStorage.getItem('theme') === 'SUN') {
     Orange();
-  } else if (window.localStorage.getItem('theme') === 'maroon') {
+  } else if (window.localStorage.getItem('theme') === 'MAROON') {
     Maroon();
-  } else if (window.localStorage.getItem('theme') === 'blue') {
+  } else if (window.localStorage.getItem('theme') === 'OCEAN') {
     Blue();
+  } else if (window.localStorage.getItem('theme') === 'PINK') {
+    Pink();
   }
 
   const getButtons = document.querySelectorAll('button');
@@ -22,17 +24,25 @@ function Theme() {
     setCurTheme(e.target.textContent);
   }
 
-  useEffect(() => {
-    if (curTheme) {
-      btnArr.map((el, i) => {
-        if (curTheme === el.innerText) {
-          el.classList.add('active-btn');
-        } else {
-          el.classList.remove('active-btn');
-        }
-      });
+  // useEffect(() => {
+  //   if (curTheme) {
+  //     btnArr.map((el, i) => {
+  //       if (curTheme === el.innerText) {
+  //         el.classList.add('active-btn');
+  //       } else {
+  //         el.classList.remove('active-btn');
+  //       }
+  //     });
+  //   }
+  // }, [curTheme]);
+
+  btnArr.map((el, i) => {
+    if (curTheme === el.innerText) {
+      el.classList.add('active-btn');
+    } else {
+      el.classList.remove('active-btn');
     }
-  }, [curTheme]);
+  });
 
   return (
     <>

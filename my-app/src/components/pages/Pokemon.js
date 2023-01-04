@@ -78,18 +78,6 @@ function Pokemon() {
         <div className="pokemon__container">
           {loggedIn && <LikeButton />}
 
-          {/* <div className="tilting-card-wrapper">
-            <div class="mouse-position-tracker"></div>
-            <div class="mouse-position-tracker"></div>
-            <div class="mouse-position-tracker"></div>
-            <div class="mouse-position-tracker"></div>
-            <div class="mouse-position-tracker"></div>
-            <div class="mouse-position-tracker"></div>
-            <div class="mouse-position-tracker"></div>
-            <div class="mouse-position-tracker"></div>
-            <div class="mouse-position-tracker"></div>
-
-            <div className="tilting-card-content"> */}
           <div className="img-container on" onClick={threeDToggle}>
             {threeD ? (
               <PokemonImage2D data={data} />
@@ -112,8 +100,6 @@ function Pokemon() {
         <h2 className="threeD" onClick={threeDToggle}>
           {threeD ? '3D OFF' : '3D ON'}
         </h2>
-        {/* </div> */}
-        {/* </div> */}
       </>
     );
   } else {

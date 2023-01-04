@@ -1,0 +1,110 @@
+.tilting-card-wrapper {
+  /* background: red; */
+  text-align: center;
+}
+
+.tilting-card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  place-content: center;
+
+  position: relative;
+
+  /* border: 3px solid lime; */
+}
+
+.tilting-card-content {
+  --perspective: 700px;
+  --rotateX: 0;
+  --rotateY: 0;
+  --angle: 5deg;
+
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  display: grid;
+  /* place-content: center;
+  text-align: center;
+  box-shadow: 0 0 10px black;
+  padding: 10px 20px;
+  border-radius: 10px;
+  aspect-ratio: 1/2; */
+
+  transform: perspective(var(--perspective)) rotateX(var(--rotateX))
+    rotateY(var(--rotateY));
+
+  transition: transform 0.6s;
+}
+
+.mouse-position-tracker {
+  position: absolute;
+  opacity: 0.2;
+  inset: 0;
+  z-index: 2;
+}
+
+.mouse-position-tracker:nth-child(1):hover ~ .tilting-card-content {
+  --rotateX: 4deg;
+  --rotateY: -4deg;
+}
+
+.mouse-position-tracker:nth-child(2):hover ~ .tilting-card-content {
+  --rotateX: 4deg;
+}
+
+.mouse-position-tracker:nth-child(3):hover ~ .tilting-card-content {
+  --rotateX: 4deg;
+  --rotateY: 4deg;
+}
+
+.mouse-position-tracker:nth-child(4):hover ~ .tilting-card-content {
+  --rotateY: -4deg;
+}
+
+.mouse-position-tracker:nth-child(5):hover ~ .tilting-card-content {
+  --rotateX: 0deg;
+  --rotateY: 0deg;
+}
+
+.mouse-position-tracker:nth-child(6):hover ~ .tilting-card-content {
+  --rotateY: 4deg;
+}
+
+.mouse-position-tracker:nth-child(7):hover ~ .tilting-card-content {
+  --rotateX: -4deg;
+  --rotateY: -4deg;
+}
+
+.mouse-position-tracker:nth-child(8):hover ~ .tilting-card-content {
+  --rotateX: -4deg;
+}
+
+.mouse-position-tracker:nth-child(9):hover ~ .tilting-card-content {
+  --rotateX: -4deg;
+  --rotateY: 4deg;
+}
+
+/* 3rd 6th 9n 3rd column*/
+.mouse-position-tracker:nth-of-type(3n) {
+  grid-column: 3/4;
+}
+/* 2nd column */
+.mouse-position-tracker:nth-of-type(3n-1) {
+  grid-column: 2/3;
+}
+/* 1st column */
+.mouse-position-tracker:nth-of-type(3n-2) {
+  grid-column: 1/2;
+}
+/* 1-3 */
+.mouse-position-tracker:nth-child(n + 1):nth-child(-n + 3) {
+  grid-row: 1/2;
+}
+/* 4-6 */
+.mouse-position-tracker:nth-child(n + 4):nth-child(-n + 6) {
+  grid-row: 2/3;
+}
+/* 7-9 */
+.mouse-position-tracker:nth-child(n + 7):nth-child(-n + 9) {
+  grid-row: 3/4;
+}

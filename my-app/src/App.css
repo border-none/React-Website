@@ -298,7 +298,8 @@ ul.home {
   /* justify-content: space-between; */
   gap: 10px;
 
-  border: 1px #0000002c solid;
+  background: rgba(128, 128, 128, 0.139);
+  /* border: 1px #0000002c solid; */
   padding: 10px 20px;
 
   text-transform: uppercase;
@@ -306,7 +307,7 @@ ul.home {
   border-radius: 3px;
   cursor: pointer;
 
-  box-shadow: 0 0 10px #00000023;
+  box-shadow: 4px 4px 5px #00000023;
   border-radius: 10px;
 
   transition: all 0.1s;
@@ -314,6 +315,7 @@ ul.home {
 
 .card:hover {
   scale: 1.1;
+  box-shadow: 4px 4px 10px #00000023, 0 0 2px 0px var(--accent);
 }
 
 .card svg {
@@ -672,7 +674,23 @@ button:hover {
 
 /* POKEMON */
 .pokemon__container {
-  background: rgba(0, 0, 0, 0.16);
+  /* background-image: linear-gradient(
+    to top left,
+    #0000004a,
+    #420a0a6d,
+    #3c60154b,
+    #2f0c4079
+  ); */
+  background: linear-gradient(#00000029, #420a0a48);
+  /* background: #0b081529; */
+
+  /* background-image: linear-gradient(
+    to bottom right,
+    rgba(128, 128, 128, 0.402),
+    var(--accent),
+    rgba(128, 128, 128, 0.402)
+  ); */
+
   position: relative;
   display: flex;
   align-items: center;
@@ -680,13 +698,25 @@ button:hover {
   margin: 0 auto;
   margin-top: 40px;
   width: 450px;
-  /* border: #0000002c 1px solid; */
   border-radius: 10px;
   box-shadow: 0 0 10px #00000018, 0 0 20px #00000018;
   user-select: none;
 
-  animation: onload 0.5s forwards ease;
+  background-size: 100% 100%;
+  background-position: top;
+
+  animation: onload 0.5s forwards ease,
+    card-background 15s alternate-reverse infinite ease;
   transition: all 0.4s;
+}
+
+@keyframes card-background {
+  0% {
+    background-position: bottom right;
+  }
+  100% {
+    background-position: top left;
+  }
 }
 
 @keyframes onload {
@@ -748,21 +778,10 @@ button:hover {
     linear,
     left top,
     left bottom,
-    from(rgba(0, 0, 0, 0)),
-    to(rgba(0, 0, 0, 0))
+    from(transparent 35%),
+    to(#00000092)
   );
   mask-image: linear-gradient(to top, #00000092, transparent 35%);
-}
-
-.pokemon-image::before {
-  content: 'LOL';
-  display: flex;
-  width: 300px;
-  height: 300px;
-  background: red;
-  position: absolute;
-  left: 75px;
-  z-index: 9999;
 }
 
 .like-btn {

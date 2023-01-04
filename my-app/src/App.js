@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import Blue from './components/themes/Blue';
 import Orange from './components/themes/Orange';
 import Maroon from './components/themes/Maroon';
+import Pink from './components/themes/Pink';
 
 function App() {
   if (window.localStorage.getItem('loggedIn') === 'true') {
@@ -23,6 +24,8 @@ function App() {
       Maroon();
     } else if (window.localStorage.getItem('theme') === 'blue') {
       Blue();
+    } else if (window.localStorage.getItem('theme') === 'pink') {
+      Pink();
     }
   }
 

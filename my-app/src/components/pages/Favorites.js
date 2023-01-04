@@ -34,12 +34,14 @@ export default function Favorites() {
   }
 
   useEffect(() => {
-    setData([]);
-    setImg([]);
-    for (const [i, pokemon] of favArr.entries()) {
-      fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-        .then((response) => response.json())
-        .then((json) => push(json));
+    if (favArr) {
+      setData([]);
+      setImg([]);
+      for (const pokemon of favArr) {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+          .then((response) => response.json())
+          .then((json) => push(json));
+      }
     }
   }, []);
 

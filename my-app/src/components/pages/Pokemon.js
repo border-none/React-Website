@@ -5,8 +5,25 @@ import PokemonImage2D from '../PokemonImage2D';
 import PokemonImage3D from '../PokemonImage3D';
 import RingLoader from 'react-spinners/ClipLoader';
 import LikeButton from '../LikeButton';
+import './Pokemon.css';
+import Blue from '../themes/Blue';
+import Orange from '../themes/Orange';
+import Pink from '../themes/Pink';
+import Maroon from '../themes/Maroon';
 
 function Pokemon() {
+  if (window.localStorage.getItem('loggedIn') === 'true') {
+    if (window.localStorage.getItem('theme') === 'orange') {
+      Orange();
+    } else if (window.localStorage.getItem('theme') === 'maroon') {
+      Maroon();
+    } else if (window.localStorage.getItem('theme') === 'blue') {
+      Blue();
+    } else if (window.localStorage.getItem('theme') === 'pink') {
+      Pink();
+    }
+  }
+
   const icons = [
     <IoAdd />,
     <GiBroadsword />,
@@ -61,6 +78,18 @@ function Pokemon() {
         <div className="pokemon__container">
           {loggedIn && <LikeButton />}
 
+          {/* <div className="tilting-card-wrapper">
+            <div class="mouse-position-tracker"></div>
+            <div class="mouse-position-tracker"></div>
+            <div class="mouse-position-tracker"></div>
+            <div class="mouse-position-tracker"></div>
+            <div class="mouse-position-tracker"></div>
+            <div class="mouse-position-tracker"></div>
+            <div class="mouse-position-tracker"></div>
+            <div class="mouse-position-tracker"></div>
+            <div class="mouse-position-tracker"></div>
+
+            <div className="tilting-card-content"> */}
           <div className="img-container on" onClick={threeDToggle}>
             {threeD ? (
               <PokemonImage2D data={data} />
@@ -80,9 +109,11 @@ function Pokemon() {
             {data.types[1]?.type.name && <p>{[data.types[1]?.type.name]}</p>}
           </div>
         </div>
-        <h2 className="threeD" onClick={threeDToggle}>
-          {threeD ? '3D OFF' : '3D ON'}
-        </h2>
+        {/* <h2 className="threeD" onClick={threeDToggle}>
+              {threeD ? '3D OFF' : '3D ON'}
+            </h2> */}
+        {/* </div> */}
+        {/* </div> */}
       </>
     );
   } else {

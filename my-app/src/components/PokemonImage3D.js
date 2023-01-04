@@ -1,5 +1,3 @@
-import RingLoader from 'react-spinners/ClipLoader';
-
 function PokemonImage3D({ data }) {
   return (
     <>
@@ -10,7 +8,7 @@ function PokemonImage3D({ data }) {
           alt="img"
         />
       ) : (
-        <RingLoader />
+        false
       )}
     </>
   );

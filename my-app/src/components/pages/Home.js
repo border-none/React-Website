@@ -30,7 +30,7 @@ export default function Home(props) {
             .then((response) => response.json())
             .then((json) => setArr((items) => [...items, json]));
         }
-      }, 100);
+      }, 500);
     }
   }, [data]);
 

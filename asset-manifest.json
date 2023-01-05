@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/React-Website/tree/Navbar/static/css/main.bedb8285.css",
+    "main.js": "/React-Website/tree/Navbar/static/js/main.8e25a91d.js",
+    "static/js/787.28cb0dcd.chunk.js": "/React-Website/tree/Navbar/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/React-Website/tree/Navbar/index.html",
+    "main.bedb8285.css.map": "/React-Website/tree/Navbar/static/css/main.bedb8285.css.map",
+    "main.8e25a91d.js.map": "/React-Website/tree/Navbar/static/js/main.8e25a91d.js.map",
+    "787.28cb0dcd.chunk.js.map": "/React-Website/tree/Navbar/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bedb8285.css",
+    "static/js/main.8e25a91d.js"
+  ]
+}

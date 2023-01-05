@@ -5,11 +5,10 @@ import Filter from '../Filter';
 import { IoHeartOutline } from 'react-icons/io5';
 import Pagination from '../Pagination';
 import RingLoader from 'react-spinners/ClipLoader';
-import LikeButton from '../LikeButton';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
-  const [count, setCount] = useState(0);
+  const [liked, setLiked] = useState(false);
   const [arr, setArr] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -55,6 +54,38 @@ export default function Home(props) {
     localStorage.setItem('clickedPokemon', name);
   }
 
+  // function like(e) {
+  //   const likedPokemon =
+  //     e.target.parentNode.nextElementSibling.childNodes[0].innerHTML;
+
+  //   const favArr = JSON.parse(window.localStorage.getItem('favorites'));
+  //   console.log(favArr);
+
+  //   if (favArr === null) {
+  //     setLiked(true);
+  //     window.localStorage.setItem('favorites', JSON.stringify([likedPokemon]));
+  //   } else {
+  //     setLiked(true);
+  //     window.localStorage.setItem(
+  //       'favorites',
+  //       JSON.stringify([likedPokemon, ...favArr])
+  //     );
+  //   }
+  // }
+
+  // function dislike(e) {
+  //   const likedPokemon =
+  //     e.target.parentNode.nextElementSibling.childNodes[0].innerHTML;
+
+  //   const favArr = JSON.parse(window.localStorage.getItem('favorites'));
+
+  //   const i = favArr.indexOf(likedPokemon);
+  //   console.log(i);
+  //   setLiked(false);
+  //   favArr.splice(i, 1);
+  //   window.localStorage.setItem('favorites', JSON.stringify([...favArr]));
+  // }
+
   if (data && arr) {
     const pokemonImg = arr.map((el) => {
       return (
@@ -66,20 +97,29 @@ export default function Home(props) {
     });
 
     const pokemon = data.map((pokemon, i) => (
-      <Link to="pokemon" key={i}>
+      <div className="card-container">
         <li className="card">
-          <div onClick={onClick} className="poke-name">
-            {pokemon.name}
-          </div>
-          <div onClick={onClickImage}>
-            {pokemonImg[i] ? (
-              pokemonImg[i]
+          {/* <div className="card__like-btn">
+            {liked ? (
+              <IoHeartOutline className="like-btn red" onClick={dislike} />
             ) : (
-              <RingLoader className="ringloader" />
+              <IoHeartOutline className="like-btn" onClick={like} />
             )}
-          </div>
+          </div> */}
+          <Link to="pokemon" key={i}>
+            <div onClick={onClick} className="poke-name">
+              {pokemon.name}
+            </div>
+            <div onClick={onClickImage}>
+              {pokemonImg[i] ? (
+                pokemonImg[i]
+              ) : (
+                <RingLoader className="ringloader" />
+              )}
+            </div>
+          </Link>
         </li>
-      </Link>
+      </div>
     ));
 
     return (

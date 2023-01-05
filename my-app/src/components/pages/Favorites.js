@@ -1,7 +1,6 @@
 import { IoHeartOutline, IoHomeOutline } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Modal from '../Modal';
 
 export default function Favorites() {
   const [data, setData] = useState([]);

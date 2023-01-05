@@ -337,6 +337,17 @@ ul.home {
   font-size: 30px;
 }
 
+.card-container {
+  position: relative;
+}
+
+.card__like-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+}
+
 .poke-name {
   font-weight: 700;
   font-size: 20px;
@@ -634,7 +645,7 @@ button:hover {
   z-index: 999;
 
   width: 100vw;
-  height: 103vh;
+  height: 94vh;
 
   display: flex;
   justify-content: center;
@@ -647,9 +658,12 @@ button:hover {
 
 @keyframes modal {
   0% {
+    backdrop-filter: blur(0px);
+
     background: transparent;
   }
   100% {
+    backdrop-filter: blur(4px);
     background: #00000087;
   }
 }

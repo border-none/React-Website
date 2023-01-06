@@ -24,19 +24,17 @@ function Filter() {
     };
   }, [type]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let sub;
     if (!sub) {
       setImg([]);
-      setTimeout(() => {
-        if (data && type !== 'ALL') {
-          for (const pokemon of data.pokemon) {
-            fetch(`${pokemon.pokemon['url']}`)
-              .then((response) => response.json())
-              .then((json) => setImg((items) => [...items, json]));
-          }
+      if (data && type !== 'ALL') {
+        for (const pokemon of data.pokemon) {
+          fetch(`${pokemon.pokemon['url']}`)
+            .then((response) => response.json())
+            .then((json) => setImg((items) => [...items, json]));
         }
-      }, 500);
+      }
     }
 
     return () => {

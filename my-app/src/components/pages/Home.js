@@ -8,32 +8,31 @@ import RingLoader from 'react-spinners/ClipLoader';
 
 export default function Home(props) {
   const [data, setData] = useState(null);
-  const [liked, setLiked] = useState(false);
   const [arr, setArr] = useState([]);
   const [page, setPage] = useState(1);
 
   const offset = String(page - 1).padEnd(3, '0');
 
   useEffect(() => {
-    setTimeout(() => {
-      setArr([]);
-      fetch(`https://pokeapi.co/api/v2/pokemon?limit=100&offset=${offset}`)
-        .then((response) => response.json())
-        .then((json) => setData(json.results));
-    }, 500);
+    console.log('---');
+    console.log('use effect, fetching names');
+    setArr([]);
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=100&offset=${offset}`)
+      .then((response) => response.json())
+      .then((json) => setData(json.results));
   }, [page]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    console.log('2nd use effect, fetching IMGs');
+    console.log('___');
     let sub;
     if (!sub) {
       if (data) {
-        setTimeout(() => {
-          for (let i = 0; i < 100; i++) {
-            fetch(`${data[i]?.url}`)
-              .then((response) => response.json())
-              .then((json) => setArr((items) => [...items, json]));
-          }
-        }, 500);
+        for (let i = 0; i < 100; i++) {
+          fetch(`${data[i]?.url}`)
+            .then((response) => response.json())
+            .then((json) => setArr((items) => [...items, json]));
+        }
       }
     }
     return () => {
@@ -53,38 +52,6 @@ export default function Home(props) {
 
     localStorage.setItem('clickedPokemon', name);
   }
-
-  // function like(e) {
-  //   const likedPokemon =
-  //     e.target.parentNode.nextElementSibling.childNodes[0].innerHTML;
-
-  //   const favArr = JSON.parse(window.localStorage.getItem('favorites'));
-  //   console.log(favArr);
-
-  //   if (favArr === null) {
-  //     setLiked(true);
-  //     window.localStorage.setItem('favorites', JSON.stringify([likedPokemon]));
-  //   } else {
-  //     setLiked(true);
-  //     window.localStorage.setItem(
-  //       'favorites',
-  //       JSON.stringify([likedPokemon, ...favArr])
-  //     );
-  //   }
-  // }
-
-  // function dislike(e) {
-  //   const likedPokemon =
-  //     e.target.parentNode.nextElementSibling.childNodes[0].innerHTML;
-
-  //   const favArr = JSON.parse(window.localStorage.getItem('favorites'));
-
-  //   const i = favArr.indexOf(likedPokemon);
-  //   console.log(i);
-  //   setLiked(false);
-  //   favArr.splice(i, 1);
-  //   window.localStorage.setItem('favorites', JSON.stringify([...favArr]));
-  // }
 
   if (data && arr) {
     const pokemonImg = arr.map((el) => {

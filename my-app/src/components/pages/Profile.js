@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../UserContext';
-import { IoPersonOutline } from 'react-icons/io5';
 import { TbPokeball } from 'react-icons/tb';
 import { ImBin } from 'react-icons/im';
 import Theme from '../themes/Theme';

@@ -364,6 +364,7 @@ ul.home {
   top: -200px;
 
   filter: blur(13px) brightness(150%) saturate(200%);
+  -webkit-filter: blur(13px) brightness(150%) saturate(200%);
   opacity: 0.15;
 }
 
@@ -659,11 +660,12 @@ button:hover {
 @keyframes modal {
   0% {
     backdrop-filter: blur(0px);
-
+    -webkit-backdrop-filter: blur(0px);
     background: transparent;
   }
   100% {
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     background: #00000087;
   }
 }
@@ -784,18 +786,21 @@ button:hover {
   0% {
     opacity: 0;
     filter: brightness(100%);
+    -webkit-filter: brightness(100%);
     scale: 0.2;
     transform: perspective(200px) rotateX(20deg) rotateY(1deg);
   }
   64% {
     opacity: 1;
     filter: brightness(110%);
+    -webkit-filter: brightness(110%);
     scale: 1.03;
     transform: perspective(200px) rotateX(0deg) rotateY(0deg);
   }
   100% {
     scale: 1;
     filter: brightness(100%);
+    -webkit-filter: brightness(100%);
     transform: perspective(200px) rotateX(0deg) rotateY(0deg);
   }
 }

@@ -54,7 +54,6 @@ export default function Favorites() {
       'clickedPokemon',
       e.target.parentNode.firstChild.innerText.toLowerCase()
     );
-    // console.log(e.target.parentNode.firstChild.innerText);
   }
 
   function onClickImage(e) {
